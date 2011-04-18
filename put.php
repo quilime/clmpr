@@ -13,8 +13,6 @@
 
         if ($user = get_user()) {
 
-            $user['user'];
-
             $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `location` , `date` )
                     VALUES ( ?, ?, ?, NOW() ) ";
             $q = $dbh->prepare($sql);

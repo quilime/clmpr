@@ -1,5 +1,34 @@
 body {
-    font-family: times; 
-    font-size:14px;
-    line-height:1.3em;
+     color: #444444;
+     font-family: Cousine,monospace;
+     font-size: 12px;
+     line-height: 1.3em;
+}
+
+a {
+     text-decoration: none;
+}
+
+a:hover {
+     color: #000099;
+     text-decoration: underline;
+}
+
+ul {
+     padding: 0pt;
+}
+
+li {
+     list-style-type: none;
+}
+
+.uname {
+     color: #DDDDDD;
+     text-decoration: none;
+}
+.delete {
+    color:#d00;
+}
+.delete:hover {
+    text-decoration:none;
 }

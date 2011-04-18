@@ -2,23 +2,23 @@
 
     require_once 'init.php';
 
+    $url = trim($_GET['_url'], '/');
+
+    list($endpoint) = explode('/', $url);
+
+
     $dbh = get_db_connection();
     $dbh->beginTransaction();
-
-    $switch = explode("/", $_SERVER['SCRIPT_URL']);
-
-    switch($section = $switch[1])
+    switch($endpoint)
     {
         case 'get' :
             include 'get.php';
             exit;
-
         case 'put' :
             exit;
-
         default :
-            if ($section != '') {
-                $user = get_users($dbh, array( 'user' => $section ));
+            if ($endpoint != '') {
+                $user = get_users($dbh, array( 'user' => $endpoint ));
                 if ( isset($user['user']) ) {
                     $get = function( $user ) {
                         $_GET['user'] = $user;
@@ -34,9 +34,7 @@
                 }
             }
     }
-
     $dbh = null;
-
 
 ?><!DOCTYPE html>
 
@@ -55,7 +53,7 @@
 
 <p>
 bookmarklet:
-<?php 
+<?php
 $js = file_get_contents('bookmarklet.js');
 ?>
 <br />
