@@ -105,10 +105,7 @@
 
     <?php if (!$user = get_user()) { ?>
 
-    <br/>
-    <br/>
-
-    <a id="register_link" href="#" onClick="$('#register').toggle(); return false;">register</a>
+    or <a id="register_link" href="#" onClick="$('#register').toggle(); return false;">signup</a>
 
     <div id="register" style="display:none;">
         <form>

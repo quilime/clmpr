@@ -56,5 +56,8 @@ bookmarklet:
 <?php
 $js = file_get_contents('bookmarklet.js');
 ?>
-<br />
-<a href="javascript:<?=$js?>">+</a>
+ <a href="javascript:<?=$js?>">+</a>
+
+<hr />
+
+<?php include 'get.php'; ?>

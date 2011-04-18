@@ -26,9 +26,11 @@ li {
      color: #DDDDDD;
      text-decoration: none;
 }
+
 .delete {
-    color:#d00;
+     color: #DD0000;
 }
+
 .delete:hover {
-    text-decoration:none;
+     text-decoration: none;
 }

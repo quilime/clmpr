@@ -41,7 +41,7 @@
     function deleteClump( id, elem ) {
         if (confirm("delete clump?")) {
             $.post('delete.php', { clump_id : id }, function(result) {
-                $(elem).hide(150);
+                $(elem).hide();
             }, 'json');
             return false;
         }
