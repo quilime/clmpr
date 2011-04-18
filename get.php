@@ -5,7 +5,6 @@
     $params = array();
     $params['user'] = isset($_GET['user']) ? $_GET['user'] : null;
 
-
     $dbh = get_db_connection();
     $dbh->beginTransaction();
 
@@ -15,9 +14,6 @@
             if ($user) {
                 $q = $dbh->prepare(" SELECT *, clumps.id as clump_id FROM clumps JOIN users ON users.id = clumps.user_id WHERE user_id = ? ORDER BY date DESC ");
                 $q->execute( array( $user['id'] ));
-            }
-            else {
-                throw( new PDOException(sprintf("user %s doesn't exist", $params['user'])));
             }
         }
         else
@@ -32,7 +28,12 @@
         exit;
     }
 
-    include 'head.html';
+
+    switch ($format) {
+        case 'rss' :
+            include 'rss.php';
+            exit;
+    }
 
 ?>
 

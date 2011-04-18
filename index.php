@@ -6,35 +6,38 @@
 
     list($endpoint) = explode('/', $url);
 
+    $pathinfo = pathinfo($_SERVER['SCRIPT_URL']);
+    $format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
 
-    $dbh = get_db_connection();
-    $dbh->beginTransaction();
+    $endpoint = str_replace('.'.$format, '', $endpoint);
+
     switch($endpoint)
     {
-        case 'get' :
-            include 'get.php';
-            exit;
-        case 'put' :
-            exit;
+        case 'about' :
+            break;
+
         default :
+
             if ($endpoint != '') {
+
+                $dbh = get_db_connection();
+                $dbh->beginTransaction();
                 $user = get_users($dbh, array( 'user' => $endpoint ));
+                $dbh = null;
                 if ( isset($user['user']) ) {
                     $get = function( $user ) {
                         $_GET['user'] = $user;
-                        include 'get.php';
-                        exit;
                     };
                     $get( $user['user'] );
-                } else {
-                    // else 404
-                    $_GET['error'] = '404';
-                    include 'error.php';
-                    exit;
                 }
             }
     }
-    $dbh = null;
+
+    switch ($format) {
+        case 'rss' :
+            include 'get.php';
+            exit;
+    }
 
 ?><!DOCTYPE html>
 
@@ -47,7 +50,7 @@
 
 <body>
 
-<b>C</b>itation, <b>L</b>ogging and <b>M</b>ulti-<b>P</b>urpose a<b>R</b>chive
+<div class="header"><b>C</b>itation, <b>L</b>ogging and <b>M</b>ulti-<b>P</b>urpose a<b>R</b>chive</div>
 
 <?php include 'signin.php'; ?>
 
@@ -61,3 +64,8 @@ $js = file_get_contents('bookmarklet.js');
 <hr />
 
 <?php include 'get.php'; ?>
+
+<hr />
+<div id="footer">
+    <a class="about" href="/about">about</a>
+</div>

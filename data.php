@@ -31,7 +31,6 @@
                     return $q->fetch();
                 }
             }
-            throw( new PDOException(sprintf("user %s doesn't exist", $args['user'])));
         }
         catch (PDOException $e) {
             echo $e->getMessage();

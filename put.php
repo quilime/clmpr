@@ -24,10 +24,8 @@
             echo '<a href="javascript:window.close();">ok</a>';
 
         } else {
-
             include 'head.html';
             include 'signin.php';
-
         }
         exit;
     }

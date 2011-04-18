@@ -22,8 +22,26 @@ li {
      list-style-type: none;
 }
 
+.header {
+     color: #888888;
+     font-size: 18px;
+}
+
+.header b {
+     color: #000000;
+}
+#signin {
+    position:absolute;
+    top:0;
+    right:0;
+    padding:5px;
+}
+#register {
+     display: inline-block;
+}
+
 .uname {
-     color: #DDDDDD;
+     color: #888888;
      text-decoration: none;
 }
 

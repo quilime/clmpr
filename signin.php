@@ -82,39 +82,32 @@
 
 </script>
 
-<p>
 
-    <div id="signin">
-    <?php if ($user = get_user()) { ?>
+<div id="signin">
 
-        hi, <a href="/<?php echo $user['user']; ?>"><?php echo $user['user']; ?></a>
-        <br/>
-        <a href="#" onClick="return onLogout();">logout</a>
+<?php if ($user = get_user()) : ?>
 
-    <? } else { ?>
+    <a href="/<?php echo $user['user']; ?>"><?php echo $user['user']; ?></a>
+    <a href="#" onClick="return onLogout();">logout</a>
 
-        sign in
-        <form id="signin_form" action="javascript:onSignIn();" style="display:inline-block;">
-            <input type="text" id="user" name="u">&nbsp;&nbsp;
-            <input type="password" id="pass" name="p">
-            <input type="submit" value="sign in" />
-        </form>
+<? else:  ?>
 
-    <? } ?>
-    </div>
+    <form id="signin_form" action="javascript:onSignIn();" style="display:inline-block;">
+        <input type="text" id="user" name="u">&nbsp;&nbsp;
+        <input type="password" id="pass" name="p">
+        <input type="submit" value="sign in" />
+    </form>
 
-    <?php if (!$user = get_user()) { ?>
+    or <a id="register_link" href="#" onClick="$('#register').toggle();">sign up</a>
 
-    or <a id="register_link" href="#" onClick="$('#register').toggle(); return false;">signup</a>
-
-    <div id="register" style="display:none;">
+    <span id="register" style="display:none;">
         <form>
             <input id="nuser" type="text" value="user" onFocus="this.select();">
             <input id="npass" type="password" value="pass" onFocus="this.select();">
             <input type="submit" value="register" onClick="return register();">
         </form>
-    </div>
+    </span>
 
-    <?php } ?>
+<? endif; ?>
 
-</p>
+</div>
