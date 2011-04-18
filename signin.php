@@ -16,23 +16,20 @@
                 echo json_encode(array('mssg' => 'logged out'));
                 exit;
             }
-
             $dbh = get_db_connection();
             $dbh->beginTransaction();
 
             $sql = "SELECT * FROM `clmpr`.`users` WHERE `user` = ? AND `pass` = PASSWORD(?)";
             $q = $dbh->prepare($sql);
             $q->execute( array( $params['user'], $params['pass'] ));
-
             if ($q->rowCount() == 1) {
                 $res = $q->fetch();
                 $_SESSION['user'] = array( 'user' => $res['user'], 'id' => $res['id'] );
-                echo json_encode(array('success'=>true, 'mssg' => 'welcome, ' . $params['user']));
+                echo json_encode(array('success'=>true, 'res' => $res));
             } else {
                 $_SESSION['user'] = null;
                 echo json_encode(array('error'=>true, 'mssg' => 'invalid login'));
             }
-
             $dbh = null;
             exit;
         }
@@ -40,7 +37,7 @@
     }
     catch(PDOException $e)
     {
-        echo json_encode(array('success' => true, 'mssg' => $e->getMessage() ));
+        echo json_encode(array('error' => true, 'mssg' => $e->getMessage() ));
     }
 
 ?>
@@ -52,14 +49,15 @@
         var pass = $('#npass').val();
         $('#register').text("creating user...");
         $.post('signup.php', { user : user, pass : pass }, function(result) {
-            $('#register').html(result.mssg);
+            if (result.success = 'true') {
+                window.location.reload();
+            }
         }, 'json');
         return false;
     }
 
 
     $('#signin_form').submit(function() {
-      alert('Handler for .submit() called.');
       return false;
     });
     function onSignIn()
@@ -68,7 +66,7 @@
         var pass = $('#pass').val();
         $('#signin').text("signing in...");
         $.post('signin.php', { user : user, pass : pass }, function(result) {
-            $('#signin').html(result.mssg);
+            window.location.reload();
         }, 'json');
     }
 
@@ -82,17 +80,15 @@
         return false;
     }
 
-
 </script>
 
 <p>
 
-
-
     <div id="signin">
     <?php if ($user = get_user()) { ?>
 
-        hi, <?php echo $user['user']; ?><br/>
+        hi, <a href="/<?php echo $user['user']; ?>"><?php echo $user['user']; ?></a>
+        <br/>
         <a href="#" onClick="return onLogout();">logout</a>
 
     <? } else { ?>
@@ -107,6 +103,8 @@
     <? } ?>
     </div>
 
+    <?php if (!$user = get_user()) { ?>
+
     <br/>
     <br/>
 
@@ -119,5 +117,7 @@
             <input type="submit" value="register" onClick="return register();">
         </form>
     </div>
+
+    <?php } ?>
 
 </p>

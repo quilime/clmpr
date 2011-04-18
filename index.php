@@ -1,12 +1,49 @@
 <?php
-    require_once 'init.php';
-?>
-<!DOCTYPE html>
-<head>
 
+    require_once 'init.php';
+
+    $dbh = get_db_connection();
+    $dbh->beginTransaction();
+
+    $switch = explode("/", $_SERVER['SCRIPT_URL']);
+
+    switch($section = $switch[1])
+    {
+        case 'get' :
+            include 'get.php';
+            exit;
+
+        case 'put' :
+            exit;
+
+        default :
+            if ($section != '') {
+                $user = get_users($dbh, array( 'user' => $section ));
+                if ( isset($user['user']) ) {
+                    $get = function( $user ) {
+                        $_GET['user'] = $user;
+                        include 'get.php';
+                        exit;
+                    };
+                    $get( $user['user'] );
+                } else {
+                    // else 404
+                    $_GET['error'] = '404';
+                    include 'error.php';
+                    exit;
+                }
+            }
+    }
+
+    $dbh = null;
+
+
+?><!DOCTYPE html>
+
+<head>
 <title>clmpr</title>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<?php include 'head.html'; ?>
 
 </head>
 
@@ -18,21 +55,8 @@
 
 <p>
 bookmarklet:
-<a href="javascript:(function()
-{
-    var w = window,
-    b = document,
-    c = encodeURIComponent,
-    d = w.open(
-        'http://clmpr.com/put.php?'
-        + 'location='  + c(b.location)
-        + '&title=' + c(b.title)
-    ,   'clmpr_popup'
-    ,   'left=' + (( w.screenX || w.screenLeft ) + 10)
-    +   ',top=' + (( w.screenY || w.screenTop) + 10 )
-    +   ',height=420px,width=550px,resizable=1,alwaysRaised=1');
-    w.setTimeout(function() {
-        d.focus()
-    } , 300)
-}
-)();">clmpr</a>
+<?php 
+$js = file_get_contents('bookmarklet.js');
+?>
+<br />
+<a href="javascript:<?=$js?>">+</a>

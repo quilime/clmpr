@@ -19,14 +19,22 @@
             $count = $q->execute( array( ':user' => $params['user'], ':pass' => $params['pass'] ));
 
             if ($count == 1) {
-                echo json_encode(array('success' => true, 'mssg' => 'welcome, ' . $params['user'] . '. your password is <b>' . $params['pass'] . '</b>' ));
+                // login newly registered user
+                $sql = "SELECT * FROM `clmpr`.`users` WHERE `user` = ? AND `pass` = PASSWORD(?)";
+                $q = $dbh->prepare($sql);
+                $q->execute( array( $params['user'], $params['pass'] ));
+                if ($q->rowCount() == 1) {
+                    $res = $q->fetch();
+                    $_SESSION['user'] = array( 'user' => $res['user'], 'id' => $res['id'] );
+                    echo json_encode(array('success'=>true, 'res' => $res));
+                } else {
+                    $_SESSION['user'] = null;
+                    echo json_encode(array('error'=>true, 'mssg' => 'invalid login'));
+                }
             } else {
                 echo json_encode(array('exists' => true, 'mssg' => 'user already exists' ));
             }
-
             $dbh = null;
-
-
         }
 
     }

@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# redirect every other request to the index
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
