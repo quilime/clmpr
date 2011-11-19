@@ -70,5 +70,5 @@ $js = file_get_contents('bookmarklet.js');
 
 <hr />
 <div id="footer">
-    <a class="about" href="/about">about</a>
+      <a class="about" href="/about">about</a> | <a href="https://github.com/quilime/clmpr">source on github</a>
 </div>

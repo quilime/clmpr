@@ -3,6 +3,8 @@ a minimal online bookmarking engine
 
 clmpr allows you to save urls simply
 
+running on [clmpr.com](http://clmpr.com)
+
 requirements:
 - php
 - mysql
