@@ -54,8 +54,8 @@
 <?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
     <li>
     <?php echo date("Y-m-d", strtotime($row['date'])) ?>
-    <a class="uname" href="/get.php?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-    <a href="<?php echo $row['location'] ?>"><?php echo $row['title'] ?></a>
+    <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+    <a href="<?php echo $row['location'] ?>"><?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?></a>
     <span class="tags"><?php echo $row['tags'] ?></span>
     <?php if ($user = get_user()): ?>
     <?php if ($user['user'] == $row['user']): ?>

@@ -14,6 +14,9 @@
     switch($endpoint)
     {
         case 'about' :
+	    echo "clmpr is a place to save hyperlinks";
+	    echo '<br/>&copy; 2011 <a href="http://quilime.com">quilime</a>';
+	exit;
             break;
 
         default :
@@ -50,7 +53,7 @@
 
 <body>
 
-<div class="header"><b>C</b>itation, <b>L</b>ogging and <b>M</b>ulti-<b>P</b>urpose a<b>R</b>chive</div>
+<div class="header"><b>c</b>itation, <b>l</b>ogging and <b>m</b>ulti-<b>p</b>urpose a<b>r</b>chive</div>
 
 <?php include 'signin.php'; ?>
 
