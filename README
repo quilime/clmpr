@@ -1,0 +1,14 @@
+citation, logging and multi-purpose archive = clmpr
+a minimal online bookmarking engine
+
+clmpr allows you to save urls simply
+
+would be nice to have:
+- pagination
+- tags, descriptions, other metadata
+- private urls
+- export
+- have options to use another DB other than MySQL
+- follow specific users
+
+
