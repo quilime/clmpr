@@ -3,12 +3,16 @@ a minimal online bookmarking engine
 
 clmpr allows you to save urls simply
 
-would be nice to have:
+requirements:
+- php
+- mysql
+
+todo (would be nice):
 - pagination
 - tags, descriptions, other metadata
 - private urls
 - export
 - have options to use another DB other than MySQL
-- follow specific users
+
 
 
