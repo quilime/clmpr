@@ -14,13 +14,13 @@
     switch($endpoint)
     {
         case 'about' :
-	    echo "clmpr is a place to save hyperlinks";
-	    echo '<br/>&copy; 2011 <a href="http://quilime.com">quilime</a>';
-	exit;
-            break;
+            include 'head.html';
+            echo "clmpr is a place to save hyperlinks";
+            echo '<br /><a href="https://github.com/quilime/clmpr">source on github</a>';
+            echo '<br />&copy; 2011 <a href="http://quilime.com">quilime</a>';
+            exit;
 
         default :
-
             if ($endpoint != '') {
 
                 $dbh = get_db_connection();
