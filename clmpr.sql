@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `clumps` (
   `tags` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=239 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
 -- Table structure for table `users`
@@ -25,4 +25,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`user`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
