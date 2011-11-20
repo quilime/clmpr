@@ -58,9 +58,11 @@
     <a href="<?php echo $row['location'] ?>"><?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?></a>
     <span class="tags"><?php echo $row['tags'] ?></span>
     <?php if ($user = get_user()): ?>
-    <?php if ($user['user'] == $row['user']): ?>
-    <a href="#" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">x</a>
-    <?php endif; ?>
+        <?php if ($user['user'] == $row['user']): ?>
+            <!-- &nbsp; 
+            <a href="" class="edit">&#x270F;</a> -->
+            <a href="#" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">&times;</a>
+        <?php endif; ?>
     <?php endif; ?>
     </li>
 <?php endfor; ?>
