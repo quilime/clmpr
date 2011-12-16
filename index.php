@@ -38,6 +38,7 @@
 
     switch ($format) {
         case 'rss' :
+        case 'xml' :
             include 'get.php';
             exit;
     }
