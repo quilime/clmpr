@@ -33,22 +33,19 @@ try {
 
         # insert clump
         $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `description`, `date` )
-                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";
+                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";  
         $q = $dbh->prepare($sql);
         $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], implode(" ", $tags), htmlentities($params['description']) ));
-
-
-        $dbh = null;
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';
         echo '<script>window.close();</script>';
 
+        $dbh = null;
+        $q = null;    
 
     } else {
-
         include 'signin.php';
-
     }
 }
 catch(PDOException $e)

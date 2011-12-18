@@ -81,7 +81,6 @@ case 'xml' :
         <?php else : ?>
         &nbsp; 
         <?php endif; ?>
-
             
         <span class="url">
             <a href="<?php echo $row['url'] ?>">
