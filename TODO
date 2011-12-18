@@ -1,5 +1,1 @@
-- server variable for bookmarklet
-
-commit: 
-- updated location variable to 'url'
-	- changed DB schema
+- create server variable for bookmarklet
