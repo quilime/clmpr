@@ -44,7 +44,9 @@ hr {
 }
 
 ul.links li {
-    
+    margin-top:0.35em;
+    margin-bottom:0.35em;
+    line-height:1em;
 }
 ul.links li span.url {
     display:inline-block;
@@ -55,13 +57,11 @@ ul.links li span.meta {
 ul.links li span.meta a {
     color:#999;
 }
-ul.links li p.desc {
-    margin:0;
-    /*display:none;*/
+ul.links li .desc {
+    margin-left:1em;
 }
 ul.links li .expand {
     color:#aaa;
-    margin-bottom:1em;
 }
 ul.links li.expand .expand {
     display:block;
@@ -86,7 +86,6 @@ ul.links li.expand .less {
 }
 
 .ui {
-
     color:#99f;
     text-decoration:none;
 }
