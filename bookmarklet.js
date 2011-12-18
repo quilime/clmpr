@@ -5,7 +5,7 @@
     c = encodeURIComponent,
     d = w.open(
         'http://clmpr/put.php?'
-        + 'url='  + c(b.url)
+        + 'url='  + c(b.location)
         + '&title=' + c(b.title)
     ,   'clmpr_popup'
     ,   'left=' + (( w.screenX || w.screenLeft ) + 10)
