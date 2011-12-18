@@ -20,7 +20,7 @@ try {
     else {
     	*/
         $q = $dbh->prepare("SELECT * FROM tags 
-                            ORDER BY tag DESC");
+                            ORDER BY count DESC, tag ASC");
         $q->execute();
     //}
 
@@ -52,7 +52,7 @@ catch(PDOException $e)
 <?php for($i = 0; $row = $q->fetch(); $i++ ): 
 ?>
     
-    <li><span class="tag"><a href="<?php echo $row['tag'] ?>"><?php echo $row['tag'] ?></a></span></li>
+    <li><span class="tag"><a href="<?php echo $row['tag'] ?>"><?php echo $row['tag'] ?></a> <?php echo $row['count'] ?></span></li>
 
 <?php endfor; ?>
 </ul>
