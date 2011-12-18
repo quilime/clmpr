@@ -8,4 +8,4 @@ tags:
 	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
 
 - added post-update git hook
-- added github repo
+- added github repo push to post-update
