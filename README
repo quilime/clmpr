@@ -11,10 +11,6 @@ requirements:
 
 todo (would be nice):
 - pagination
-- tags, descriptions, other metadata
 - private urls
 - export
-- have options to use another DB other than MySQL
-
-
 
