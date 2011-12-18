@@ -17,29 +17,30 @@
 
     $('body').append(c);
 
-    // the following is on click
-        var params = {
-            'title': "test",
-            'referer': location.href,
-            'tags': "tags",
-            'desc': "desc"
-        };
-        var urlb = [];
-        urlb.push('http://clmpr.com/save.php');
-        urlb.push('?');
-        for (var n in params) {
-            urlb.push(encodeURIComponent(n));
-            urlb.push('=');
-            urlb.push(encodeURIComponent(params[n]));
-            urlb.push('&');
-        }
-        // this method does a popup blocker
-        if (true) {
-            window.open(urlb.join(''),
-                    'saved ' + new Date().getTime(),
-                    'status=no,resizable=no,scrollbars=no,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,' +
-                    'width=300,height=50,left=0,top=0');
-        }
+    
+    var params = {
+        'title': "test",
+        'referer': location.href,
+        'tags': "tags",
+        'desc': "desc"
+    };
+    var urlb = [];
+    urlb.push('http://clmpr/save.php');
+    urlb.push('?');
+    for (var n in params) {
+        urlb.push(encodeURIComponent(n));
+        urlb.push('=');
+        urlb.push(encodeURIComponent(params[n]));
+        urlb.push('&');
+    }
+    
+    // this may be caught by a popup blocker
+    if (true) {
+        window.open(urlb.join(''),
+                'saved ' + new Date().getTime(),
+                'status=no,resizable=no,scrollbars=no,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,' +
+                'width=300,height=50,left=0,top=0');
+    }
 
 }
 )();

@@ -1,7 +1,5 @@
+- server variable for bookmarklet
 
-added post-commit hook
-
-this is another line as a test
-
-another
-
+commit: 
+- updated location variable to 'url'
+	- changed DB schema

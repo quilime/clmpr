@@ -10,7 +10,7 @@
 	<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
 	<item>
 	    <title><?php echo urlencode($row['title']) ?></title>
-	    <link><?php echo urlencode($row['location']) ?></link>
+	    <link><?php echo urlencode($row['url']) ?></link>
 	    <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
 
 	</item>	
@@ -37,7 +37,7 @@ exit;
 
 <item>
     <title><?php echo $row['title'] ?></title>
-    <link><?php echo $row['location'] ?></link>
+    <link><?php echo $row['url'] ?></link>
     <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
     <tags><?php echo $row['tags'] ?></tags>
     <postedby><?php echo $row['user'] ?></postedby>

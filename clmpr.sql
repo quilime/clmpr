@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `clumps` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `user_id` int(9) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
   `tags` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)

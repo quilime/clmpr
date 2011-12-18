@@ -1,6 +1,6 @@
 body {
      color: #444444;
-     font-family: Cousine,monospace;
+     font-family: Monaco,monospace;
      font-size: 12px;
      line-height: 1.3em;
 }
@@ -45,7 +45,8 @@ li {
 }
 
 .delete {
-     color: #DD0000;
+    color: #DD0000;
+    font-weight:bold;
 }
 
 .delete:hover {
