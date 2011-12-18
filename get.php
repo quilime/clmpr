@@ -72,6 +72,7 @@ case 'xml' :
 bookmarklet:
 <?php
     $js = file_get_contents('bookmarklet.js');
+    $js = str_replace('{BASE_URL}', BASE_URL, $js);
 ?>
 <a href="javascript:<?=$js?>">+</a>
 </p>

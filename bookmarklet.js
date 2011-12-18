@@ -4,7 +4,7 @@
     b = document,
     c = encodeURIComponent,
     d = w.open(
-        'http://clmpr/new.php?'
+        'http://{BASE_URL}/new.php?'
         + 'url='  + c(b.location)
         + '&title=' + c(b.title || b.location)
     ,   'clmpr_popup'
