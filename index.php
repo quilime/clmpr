@@ -23,7 +23,7 @@ switch($endpoint)
         clmpr saves internet links
         
         <ul class="tags">
-        tags:
+        key words:
         <li>delicious</li>
         <li>clone</li>
         <li>bookmarks</li>
