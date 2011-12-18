@@ -20,7 +20,7 @@ switch($endpoint)
 
         ?>
         <p>
-        clmpr is citation, logging and multi-purpose archive. it saves web links.
+        clmpr saves internet links
         
         <ul class="tags">
         tags:

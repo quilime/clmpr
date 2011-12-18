@@ -4,36 +4,35 @@ body {
      font-size: 12px;
      line-height: 1.3em;
 }
-
 a {
     text-decoration:none;
 }
-
 a:hover {
      color: #000099;
      text-decoration: underline;
 }
-
 ul {
      padding: 0pt;
 }
-
 li {
      list-style-type: none;
 }
-
+label {
+    font-weight:bold;
+}
 hr {
     border:0;
     border-bottom:1px dotted #888;
 }
 
+
 .header, .header a {
      color: #888888;
 }
-
 .header b {
      color: #000000;
 }
+
 #signin {
     position:absolute;
     top:0;
@@ -56,6 +55,14 @@ ul.links li span.meta {
 ul.links li span.meta a {
     color:#999;
 }
+ul.links li p.desc {
+    margin:1em 0 1em 2em;
+    display:none;
+}
+ul.links li.expand p.desc {
+    display:block;
+}
+
 .delete {
     font-weight:bold;
     padding:0 3px; 
@@ -72,15 +79,14 @@ ul.links li span.meta a {
 form.new input[type="text"] {
     width:100%;
 }
-label {
-    font-weight:bold;
-}
+
+
 
 ul.tags, ul.tags li {
     display:inline;
 }
 ul.tags li {
-    background:#f8f8f8;
+    background:#eee;
     padding:0 4px;
     margin:0 1px;
 }

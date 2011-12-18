@@ -62,6 +62,8 @@ case 'xml' :
 <ul class="links">
 <?php for($i = 0; $row = $q->fetch(); $i++ ): 
 
+    # process description
+    $hasDescription = $row['description'] || false;
 
     # process tags
     if ($row['tags'] == '')
@@ -69,36 +71,49 @@ case 'xml' :
     else
         $row['tags'] = explode(" ", $row['tags']);
 
-
 ?>
     
     <li>
+
+        <?php if ($hasDescription) : ?>
+        <a href="#" onClick="$(this.parentNode).toggleClass('expand');" title="expand">+</a>
+        <?php else : ?>
+        &nbsp; 
+        <?php endif; ?>
+
         <span class="meta">
             <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
             <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
         </span>
             
         <span class="url">
-        <a href="<?php echo $row['url'] ?>">
-            <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
-        </a>
+            <a href="<?php echo $row['url'] ?>">
+                <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
+            </a>
         </span>
-
-        
+    
         <ul class="tags">
-
-        <?php foreach($row['tags'] as $tag) : ?>
-        <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
-        <? endforeach; ?>
+            <?php foreach($row['tags'] as $tag) : ?>
+            <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
+            <? endforeach; ?>
         </ul>
 
-        <?php if ($user = get_user()):
-                if ($user['user'] == $row['user']): ?>
+        <?php 
+        if ($user = get_user()):
+            if ($user['user'] == $row['user']): ?>
                 <!-- &nbsp; 
                 <a href="" class="edit">&#x270F;</a> -->
                 <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">&times;</a>
-        <?php   endif;
-        endif; ?>
+        <?php   
+            endif;
+        endif; 
+        ?>
+
+        <?php if ($hasDescription) : ?>
+            <p class="desc">
+            <?php echo $row['description']; ?>
+            </p>
+        <?php endif; ?>  
 
     </li>
 

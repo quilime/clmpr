@@ -17,42 +17,45 @@ try {
 
     	<form method="POST" action="put.php" class="new">
 
+            <p>
     		<label>title</label>
     		<input type="text" name="title" value="<?=htmlentities($params['title'])?>">
+            </p>
 
-    		<br /><br />
-
+            <p>
     		<label>url</label>
     		<input type="text" name="url" value="<?=$params['url']?>">    		
-
-    		<br /><br />
-
+            </p>
+    		
+            <p>
     		<label>tags (space delimited)</label>
     		<input type="text" name="tags" value="">    		    		
+            </p>
 
-    		<br /><br /><br />
+            <p>
+            <label>description</label>
+            <input type="text" name="description" value="">                        
+            </p>            
 
+    		<br />
+
+            <p>
     		<input type="submit" value="save">
     		<a href="javascript:window.close();">cancel</a>
+            </p>
 
     		<br />
     		<br />
 
     	</form>
 
-    	<!-- <hr /> -->
-
     	<?php // include 'footer.html'; ?>
 
     	<script>
-
     		window.onload = function() {
     			document.forms[0].tags.focus();
     		}
-
-	    	</script>    	
-
-
+	    </script>    	
 
     	<?php
 

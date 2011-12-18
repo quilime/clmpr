@@ -6,6 +6,7 @@ $params = array();
 $params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
 $params['url']   = isset($_POST['url'])  ? $_POST['url']  : null;
 $params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
+$params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
 
 include 'head.html';
 
@@ -17,10 +18,10 @@ try {
         $dbh->beginTransaction();
 
         # insert clump
-        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `date` )
-                VALUES ( ?, ?, ?, ?, NOW() ) ";
+        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `description`, `date` )
+                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";
         $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], $params['tags'] ));
+        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], $params['tags'], $params['description'] ));
 
         # process tags
         $tags = explode(" ", $params['tags']);
@@ -35,10 +36,9 @@ try {
         $dbh = null;
 
         echo "clumped.<br/><br/>";
-        //echo '<a href="javascript:window.close();">ok</a>';
+        echo '<a href="javascript:window.close();">ok</a>';
         echo '<script>window.close();</script>';
 
-        include 'foot.html';
 
     } else {
 
