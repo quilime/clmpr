@@ -17,21 +17,26 @@ try {
         $dbh = get_db_connection();
         $dbh->beginTransaction();
 
-        # insert clump
-        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `description`, `date` )
-                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";
-        $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], $params['tags'], $params['description'] ));
-
         # process tags
         $tags = explode(" ", $params['tags']);
+        $tags = array_unique($tags);
         if (count($tags) > 0) {
-            foreach($tags as $tag) {
-                $sql = "INSERT INTO `clmpr`.`tags` ( `tag` ) VALUES ( ? ) ";
+            foreach($tags as $key => $tag) {
+                $sql = "INSERT INTO `clmpr`.`tags` ( `tag`, `count` ) 
+                        VALUES ( ?, 1 ) 
+                        ON DUPLICATE KEY UPDATE
+                            `count` = `count` + 1";
                 $q = $dbh->prepare($sql);
                 $q->execute( array( $tag ));
             }
         }
+
+        # insert clump
+        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `description`, `date` )
+                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";
+        $q = $dbh->prepare($sql);
+        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], implode(" ", $tags), htmlentities($params['description']) ));
+
 
         $dbh = null;
 

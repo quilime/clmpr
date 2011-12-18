@@ -105,11 +105,11 @@ ul.tags, ul.tags li {
     display:inline;
 }
 ul.tags li {
-    background:#eee;
+    background:#eef;
     padding:0 4px;
     margin:0 1px;
 }
 ul.tags li a {
-    color:#bbb;
+    color:#aaf;
 }
 

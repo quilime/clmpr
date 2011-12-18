@@ -94,6 +94,12 @@ case 'xml' :
             <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
         </span>
 
+            <ul class="tags">
+                <?php foreach($row['tags'] as $tag) : ?>
+                <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
+                <? endforeach; ?>
+            </ul>        
+
         <?php 
         if ($user = get_user()):
             if ($user['user'] == $row['user']): ?>
@@ -106,19 +112,11 @@ case 'xml' :
         ?>        
 
         <div class="expand">
-    
             <?php if ($hasDescription) : ?>
                 <p class="desc">
                 <?php echo $row['description']; ?>
                 </p>
             <?php endif; ?>      
-
-            <ul class="tags">
-                <?php foreach($row['tags'] as $tag) : ?>
-                <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
-                <? endforeach; ?>
-            </ul>
-
         </div>
 
     </li>
