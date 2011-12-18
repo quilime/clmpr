@@ -15,9 +15,11 @@ switch($endpoint)
 {
     case 'about' :
         include 'head.html';
-        echo "clmpr is a place to save hyperlinks";
-        echo '<br /><a href="https://github.com/quilime/clmpr">source on github</a>';
-        echo '<br />&copy; 2011 <a href="http://quilime.com">quilime</a>';
+        include 'header.html';
+        echo '<hr />';
+        echo '&copy; 2011 <a href="http://quilime.com">gabriel dunne</a>';
+        echo '<hr />';
+        include 'footer.html';
         exit;
 
     default :
@@ -51,12 +53,9 @@ switch ($format) {
 <?php include 'head.html'; ?>
 
 </head>
-
 <body>
 
-<div class="header"><b>c</b>itation, <b>l</b>ogging and <b>m</b>ulti-<b>p</b>urpose a<b>r</b>chive</div>
-
-<?php include 'signin.php'; ?>
+<?php include 'header.html'; ?>
 
 <p>
 bookmarklet:
@@ -66,11 +65,11 @@ bookmarklet:
 <a href="javascript:<?=$js?>">+</a>
 </p>
 
+
 <hr />
 
 <?php include 'get.php'; ?>
 
 <hr />
-<div id="footer">
-      <a class="about" href="/about">about</a> | <a href="https://github.com/quilime/clmpr">source on github</a>
-</div>
+
+<?php include 'footer.html' ?>

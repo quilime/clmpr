@@ -22,7 +22,12 @@ li {
      list-style-type: none;
 }
 
-.header {
+hr {
+    border:0;
+    border-bottom:1px dotted #888;
+}
+
+.header, .header a {
      color: #888888;
 }
 
@@ -40,7 +45,7 @@ li {
 }
 
 ul.links li {
-    margin-bottom:1.2em;
+    margin-bottom:0.75em;
 }
 ul.links li span.url {
     display:block;
@@ -49,16 +54,37 @@ ul.links li span.meta {
     color:#bbb;
 }
 ul.links li span.meta a {
-    color:#bbb;
+    color:#999;
 }
 .delete {
     font-weight:bold;
     padding:0 3px; 
     line-height:1em;
     background:#eee;
+    color:#999;
     text-decoration:none;
 }
 
 .delete:hover {
      text-decoration: none;
 }
+
+form.new input[type="text"] {
+    width:100%;
+}
+label {
+    font-weight:bold;
+}
+
+ul.tags, ul.tags li {
+    display:inline;
+}
+ul.tags li {
+    background:#eee;
+    padding:0 4px;
+    margin:0 1px;
+}
+ul.tags li a {
+    color:#aaa;
+}
+

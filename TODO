@@ -1,1 +1,10 @@
-- create server variable for bookmarklet
+create server variable for bookmarklet
+evaluate MVC architecture w/ template system
+add description field
+
+tags:
+	delimit tags with commas in db (?)
+	need UNIQUE field in tags
+	increment tag count on insert
+	decrement tag count on delete 
+		if zero delete row

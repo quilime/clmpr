@@ -3,29 +3,45 @@
 include 'init.php';
 
 $params = array();
-$params['title'] = isset($_GET['title']) ? $_GET['title'] : null;
-$params['url']  = isset($_GET['url'])  ? $_GET['url']  : null;
+$params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
+$params['url']   = isset($_POST['url'])  ? $_POST['url']  : null;
+$params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
+
+include 'head.html';
 
 try {
 
-    $dbh = get_db_connection();
-    $dbh->beginTransaction();
-
     if ($user = get_user()) {
 
-        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `date` )
-                VALUES ( ?, ?, ?, NOW() ) ";
+        $dbh = get_db_connection();
+        $dbh->beginTransaction();
+
+        # insert clump
+        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `date` )
+                VALUES ( ?, ?, ?, ?, NOW() ) ";
         $q = $dbh->prepare($sql);
-        $count = $q->execute( array( $user['id'], $params['title'],$params['url'] ));
+        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], $params['tags'] ));
+
+        # process tags
+        $tags = explode(" ", $params['tags']);
+        if (count($tags) > 0) {
+            foreach($tags as $tag) {
+                $sql = "INSERT INTO `clmpr`.`tags` ( `tag` ) VALUES ( ? ) ";
+                $q = $dbh->prepare($sql);
+                $q->execute( array( $tag ));
+            }
+        }
 
         $dbh = null;
 
         echo "clumped.<br/><br/>";
-        echo '<a href="javascript:window.close();">ok</a>';
+        //echo '<a href="javascript:window.close();">ok</a>';
+        echo '<script>window.close();</script>';
+
+        include 'foot.html';
 
     } else {
 
-        include 'head.html';
         include 'signin.php';
 
     }
