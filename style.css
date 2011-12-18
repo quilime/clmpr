@@ -56,11 +56,30 @@ ul.links li span.meta a {
     color:#999;
 }
 ul.links li p.desc {
-    margin:1em 0 1em 2em;
+    margin:0;
+    /*display:none;*/
+}
+ul.links li .expand {
     display:none;
+    margin:0 0 1em 1em;
+}
+ul.links li.expand .expand {
+    display:block;
 }
 ul.links li.expand p.desc {
-    display:block;
+    /*display:block;*/
+}
+ul.links li .less {
+    display:none;
+}
+ul.links li .more {
+    display:inline;
+}
+ul.links li.expand .more {
+    display:none;
+}
+ul.links li.expand .less {
+    display:inline;
 }
 
 .delete {

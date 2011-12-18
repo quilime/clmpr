@@ -76,27 +76,23 @@ case 'xml' :
     <li>
 
         <?php if ($hasDescription) : ?>
-        <a href="#" onClick="$(this.parentNode).toggleClass('expand');" title="expand">+</a>
+        <a href="#" class="more" onClick="$(this.parentNode).addClass('expand');">+</a>
+        <a href="#" class="less" onClick="$(this.parentNode).removeClass('expand');">-</a>
         <?php else : ?>
         &nbsp; 
         <?php endif; ?>
 
-        <span class="meta">
-            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
-            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-        </span>
             
         <span class="url">
             <a href="<?php echo $row['url'] ?>">
                 <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
             </a>
         </span>
-    
-        <ul class="tags">
-            <?php foreach($row['tags'] as $tag) : ?>
-            <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
-            <? endforeach; ?>
-        </ul>
+
+        <span class="meta">
+            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
+            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+        </span>
 
         <?php 
         if ($user = get_user()):
@@ -107,13 +103,23 @@ case 'xml' :
         <?php   
             endif;
         endif; 
-        ?>
+        ?>        
 
-        <?php if ($hasDescription) : ?>
-            <p class="desc">
-            <?php echo $row['description']; ?>
-            </p>
-        <?php endif; ?>  
+        <div class="expand">
+    
+            <?php if ($hasDescription) : ?>
+                <p class="desc">
+                <?php echo $row['description']; ?>
+                </p>
+            <?php endif; ?>      
+
+            <ul class="tags">
+                <?php foreach($row['tags'] as $tag) : ?>
+                <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
+                <? endforeach; ?>
+            </ul>
+
+        </div>
 
     </li>
 
