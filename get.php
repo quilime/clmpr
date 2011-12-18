@@ -6,6 +6,7 @@
     $params['user'] = isset($_GET['user']) ? $_GET['user'] : null;
 
     $dbh = get_db_connection();
+
     $dbh->beginTransaction();
 
     try {

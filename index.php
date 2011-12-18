@@ -1,47 +1,47 @@
 <?php
 
-    require_once 'init.php';
+require_once 'init.php';
 
-    $url = trim($_GET['_url'], '/');
+$url = isset($_GET['_url']) ? trim($_GET['_url'], '/') : '/';
 
-    list($endpoint) = explode('/', $url);
+list($endpoint) = explode('/', $url);
 
-    $pathinfo = pathinfo($_SERVER['SCRIPT_URL']);
-    $format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
+$pathinfo = pathinfo($_SERVER['REQUEST_URI']);
+$format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
 
-    $endpoint = str_replace('.'.$format, '', $endpoint);
+$endpoint = str_replace('.'.$format, '', $endpoint);
 
-    switch($endpoint)
-    {
-        case 'about' :
-            include 'head.html';
-            echo "clmpr is a place to save hyperlinks";
-            echo '<br /><a href="https://github.com/quilime/clmpr">source on github</a>';
-            echo '<br />&copy; 2011 <a href="http://quilime.com">quilime</a>';
-            exit;
+switch($endpoint)
+{
+    case 'about' :
+        include 'head.html';
+        echo "clmpr is a place to save hyperlinks";
+        echo '<br /><a href="https://github.com/quilime/clmpr">source on github</a>';
+        echo '<br />&copy; 2011 <a href="http://quilime.com">quilime</a>';
+        exit;
 
-        default :
-            if ($endpoint != '') {
+    default :
+        if ($endpoint != '') {
 
-                $dbh = get_db_connection();
-                $dbh->beginTransaction();
-                $user = get_users($dbh, array( 'user' => $endpoint ));
-                $dbh = null;
-                if ( isset($user['user']) ) {
-                    $get = function( $user ) {
-                        $_GET['user'] = $user;
-                    };
-                    $get( $user['user'] );
-                }
+            $dbh = get_db_connection();
+            $dbh->beginTransaction();
+            $user = get_users($dbh, array( 'user' => $endpoint ));
+            $dbh = null;
+            if ( isset($user['user']) ) {
+                $get = function( $user ) {
+                    $_GET['user'] = $user;
+                };
+                $get( $user['user'] );
             }
-    }
+        }
+}
 
-    switch ($format) {
-        case 'rss' :
-        case 'xml' :
-            include 'get.php';
-            exit;
-    }
+switch ($format) {
+    case 'rss' :
+    case 'xml' :
+        include 'get.php';
+        exit;
+}
 
 ?><!DOCTYPE html>
 
@@ -61,7 +61,7 @@
 <p>
 bookmarklet:
 <?php
-$js = file_get_contents('bookmarklet.js');
+    $js = file_get_contents('bookmarklet.js');
 ?>
 <a href="javascript:<?=$js?>">+</a>
 </p>
