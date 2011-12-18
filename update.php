@@ -9,8 +9,6 @@ $params['url']   = isset($_POST['url'])   ? $_POST['url']  : null;
 $params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
 $params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
 
-include 'head.html';
-
 try {
 
     if ($user = get_user() && $params['id']) {
