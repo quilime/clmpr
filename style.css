@@ -45,10 +45,10 @@ hr {
 }
 
 ul.links li {
-    margin-bottom:0.75em;
+    
 }
 ul.links li span.url {
-    display:block;
+    display:inline-block;
 }
 ul.links li span.meta {
     color:#bbb;
@@ -80,11 +80,11 @@ ul.tags, ul.tags li {
     display:inline;
 }
 ul.tags li {
-    background:#eee;
+    background:#f8f8f8;
     padding:0 4px;
     margin:0 1px;
 }
 ul.tags li a {
-    color:#aaa;
+    color:#bbb;
 }
 

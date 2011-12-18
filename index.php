@@ -17,6 +17,27 @@ switch($endpoint)
         include 'head.html';
         include 'header.html';
         echo '<hr />';
+
+        ?>
+        <p>
+        clmpr is citation, logging and multi-purpose archive. it saves web links.
+        
+        <ul class="tags">
+        tags:
+        <li>delicious</li>
+        <li>clone</li>
+        <li>bookmarks</li>
+        <li>webservice</li>
+        <li>database</li>
+        <li>mindmap</li>
+        <li>citation</li>
+        <li>semantic</li>
+        </ul>
+
+        </p>
+
+        <?
+
         echo '&copy; 2011 <a href="http://quilime.com">gabriel dunne</a>';
         echo '<hr />';
         include 'footer.html';

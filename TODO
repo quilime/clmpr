@@ -2,9 +2,12 @@ create server variable for bookmarklet
 evaluate MVC architecture w/ template system
 add description field
 
-tags:
+tags: 
+	
 	delimit tags with commas in db (?)
 	need UNIQUE field in tags
 	increment tag count on insert
 	decrement tag count on delete 
 		if zero delete row
+
+	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html

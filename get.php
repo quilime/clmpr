@@ -73,15 +73,17 @@ case 'xml' :
 ?>
     
     <li>
+        <span class="meta">
+            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
+            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+        </span>
+            
         <span class="url">
         <a href="<?php echo $row['url'] ?>">
             <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
         </a>
         </span>
-        <span class="meta">
-            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
-            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-        </span>
+
         
         <ul class="tags">
 
