@@ -1,6 +1,8 @@
 evaluate MVC architecture w/ template system
+templates for rss, xml
 smart urls
 filter by tags
+preview media when embedding videos from youtube, images, etc
 
 tags: 
 	delimit tags with commas in db (?)
