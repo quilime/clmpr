@@ -5,5 +5,4 @@ filter by tags
 preview media when embedding videos from youtube, images, etc
 
 tags: 
-	delimit tags with commas in db (?)
 	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
