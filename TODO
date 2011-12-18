@@ -7,4 +7,6 @@ preview media when embedding videos from youtube, images, etc
 tags: 
 	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
 
--added post-update git hook
+- added post-update git hook
+- added github repo
+
