@@ -59,28 +59,37 @@ case 'xml' :
 
 </script>
 
-<ul>
+<ul class="links">
 <?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
     
     <li>
-    <?php echo date("Y-m-d", strtotime($row['date'])) ?>
+        <span class="url">
+        <a href="<?php echo $row['url'] ?>">
+            <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
+        </a>
+        </span>
 
-    <a class="uname" href="/?user=<?php echo $row['user'] ?>">
-        <?php echo $row['user'] ?>
-    </a>
-    <a href="<?php echo $row['url'] ?>">
-        <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
-    </a>
-    <span class="tags">
+        <span class="meta">
+
+        <span>
+            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
+            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+        </span>
+    
+
+        <span class="tags">
         <?php echo $row['tags'] ?>
-    </span>
-    <?php if ($user = get_user()):
-            if ($user['user'] == $row['user']): ?>
-            <!-- &nbsp; 
-            <a href="" class="edit">&#x270F;</a> -->
-            <a href="#" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">&times;</a>
-    <?php   endif;
-          endif; ?>
+        </span>
+
+        <?php if ($user = get_user()):
+                if ($user['user'] == $row['user']): ?>
+                <!-- &nbsp; 
+                <a href="" class="edit">&#x270F;</a> -->
+                <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">&times;</a>
+        <?php   endif;
+        endif; ?>
+        </span>
+
     </li>
 
 <?php endfor; ?>

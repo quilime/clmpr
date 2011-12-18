@@ -1,12 +1,12 @@
 body {
      color: #444444;
-     font-family: Monaco,monospace;
+     font-family: Monaco, monospace;
      font-size: 12px;
      line-height: 1.3em;
 }
 
 a {
-     text-decoration: none;
+    text-decoration:none;
 }
 
 a:hover {
@@ -39,14 +39,24 @@ li {
      display: inline-block;
 }
 
-.uname {
-     color: #888888;
-     text-decoration: none;
+ul.links li {
+    margin-bottom:1.2em;
 }
-
+ul.links li span.url {
+    display:block;
+}
+ul.links li span.meta {
+    color:#bbb;
+}
+ul.links li span.meta a {
+    color:#bbb;
+}
 .delete {
-    color: #DD0000;
     font-weight:bold;
+    padding:0 3px; 
+    line-height:1em;
+    background:#eee;
+    text-decoration:none;
 }
 
 .delete:hover {
