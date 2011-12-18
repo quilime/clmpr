@@ -60,14 +60,17 @@ ul.links li p.desc {
     /*display:none;*/
 }
 ul.links li .expand {
-    display:none;
-    margin:0 0 1em 1em;
+    color:#aaa;
+    margin-bottom:1em;
 }
 ul.links li.expand .expand {
     display:block;
 }
-ul.links li.expand p.desc {
-    /*display:block;*/
+ul.links li .desc {
+    display:inline-block;
+}
+ul.links li .tags {
+    display:inline-block;
 }
 ul.links li .less {
     display:none;
@@ -82,17 +85,19 @@ ul.links li.expand .less {
     display:inline;
 }
 
-.delete {
-    font-weight:bold;
-    padding:0 3px; 
-    line-height:1em;
-    background:#eee;
-    color:#999;
+.ui {
+
+    color:#99f;
     text-decoration:none;
 }
-
-.delete:hover {
-     text-decoration: none;
+.ui:hover {
+    text-decoration: none;
+}
+.ui.delete {
+    font-weight:bold;
+    color:#f9e;
+}
+.ui.edit {
 }
 
 form.new input[type="text"] {

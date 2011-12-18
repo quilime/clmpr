@@ -19,9 +19,11 @@ try {
     }
     else {
     	*/
-        $q = $dbh->prepare("SELECT * FROM tags 
-                            ORDER BY count DESC, tag ASC");
+        $q = $dbh->prepare("SELECT * FROM `tags` 
+                            WHERE `count` > 0 
+                            ORDER BY `count` DESC, `tag` ASC ");
         $q->execute();
+
     //}
 
 }
@@ -44,22 +46,16 @@ catch(PDOException $e)
 
 <?php include 'header.html'; ?>
 
-
 <p>tags</p>
+
 <hr />
 
 <ul class="tags">
-<?php for($i = 0; $row = $q->fetch(); $i++ ): 
-?>
-    
+<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
     <li><span class="tag"><a href="<?php echo $row['tag'] ?>"><?php echo $row['tag'] ?></a> <?php echo $row['count'] ?></span></li>
-
 <?php endfor; ?>
 </ul>
 
 <hr />
 
 <?php include 'footer.html' ?>
-
-
-

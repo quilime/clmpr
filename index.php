@@ -45,7 +45,6 @@ switch($endpoint)
 
     default :
         if ($endpoint != '') {
-
             $dbh = get_db_connection();
             $dbh->beginTransaction();
             $user = get_users($dbh, array( 'user' => $endpoint ));
@@ -59,38 +58,4 @@ switch($endpoint)
         }
 }
 
-switch ($format) {
-    case 'rss' :
-    case 'xml' :
-        include 'get.php';
-        exit;
-}
-
-?><!DOCTYPE html>
-
-<head>
-<title>clmpr</title>
-
-<?php include 'head.html'; ?>
-
-</head>
-<body>
-
-<?php include 'header.html'; ?>
-
-<p>
-bookmarklet:
-<?php
-    $js = file_get_contents('bookmarklet.js');
-?>
-<a href="javascript:<?=$js?>">+</a>
-</p>
-
-
-<hr />
-
-<?php include 'get.php'; ?>
-
-<hr />
-
-<?php include 'footer.html' ?>
+include 'get.php';

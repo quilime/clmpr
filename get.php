@@ -4,6 +4,9 @@ require_once 'init.php';
 
 $params = array();
 $params['user'] = isset($_GET['user']) ? $_GET['user'] : null;
+$params['id']   = isset($_GET['id']) ? $_GET['id'] : null;
+
+$format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
 
 $dbh = get_db_connection();
 $dbh->beginTransaction();
@@ -21,6 +24,15 @@ try {
             $q->execute( array( $user['id'] ));
         }
     }
+    if ($params['id']) {
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
+                            FROM clumps 
+                            JOIN users 
+                                ON users.id = clumps.user_id 
+                            WHERE clumps.id = ? 
+                            ORDER BY date DESC");
+        $q->execute( array( $params['id'] ));        
+    }
     else {
         $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
                             FROM clumps 
@@ -36,7 +48,6 @@ catch(PDOException $e)
     exit;
 }
 
-
 switch ($format) {
 case 'xml' :
     case 'rss' :
@@ -44,19 +55,39 @@ case 'xml' :
         exit;
 }
 
+
+?><!DOCTYPE html>
+
+<head>
+<title>clmpr</title>
+
+<?php include 'head.html'; ?>
+
+</head>
+<body>
+
+<?php include 'header.html'; ?>
+
+<p>
+bookmarklet:
+<?php
+    $js = file_get_contents('bookmarklet.js');
 ?>
+<a href="javascript:<?=$js?>">+</a>
+</p>
+
+<hr />
+
 
 <script>
-
-    function deleteClump( id, elem ) {
-        if (confirm("confirm delete")) {
-            $.post('delete.php', { clump_id : id }, function(result) {
-                $(elem).hide();
-            }, 'json');
-            return false;
-        }
+function deleteClump( id, elem ) {
+    if (confirm("confirm delete")) {
+        $.post('delete.php', { clump_id : id }, function(result) {
+            $(elem).hide();
+        }, 'json');
+        return false;
     }
-
+}
 </script>
 
 <ul class="links">
@@ -74,51 +105,54 @@ case 'xml' :
 ?>
     
     <li>
-
-        <?php if ($hasDescription) : ?>
+        
+        <? /* 
+        <?php if ($hasDescription || count($row['tags']) > 0 || $user['user'] == $row['user']) : ?>
         <a href="#" class="more" onClick="$(this.parentNode).addClass('expand');">+</a>
         <a href="#" class="less" onClick="$(this.parentNode).removeClass('expand');">-</a>
         <?php else : ?>
         &nbsp; 
         <?php endif; ?>
+        */ ?>
+
             
         <span class="url">
             <a href="<?php echo $row['url'] ?>">
                 <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
             </a>
-        </span>
+        </span>  
 
         <span class="meta">
             <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
             <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-        </span>
+        </span>        
 
-        <ul class="tags">
-            <?php foreach($row['tags'] as $tag) : ?>
-            <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
-            <? endforeach; ?>
-        </ul>        
-
-        <?php 
-        if ($user = get_user()):
-            if ($user['user'] == $row['user']): ?>
-                <!-- &nbsp; 
-                <a href="" class="edit">&#x270F;</a> -->
-                <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="delete">&times;</a>
-        <?php   
-            endif;
-        endif; 
-        ?>        
+        <?php if ($user['user'] == $row['user']): ?>
+                <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">&#x2710;</a>
+                <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="ui delete">&times;</a>
+        <?php endif; ?>         
 
         <div class="expand">
             <?php if ($hasDescription) : ?>
-                <p class="desc">
+                <span class="desc">
                 <?php echo $row['description']; ?>
-                </p>
-            <?php endif; ?>      
+                </span>
+            <?php endif; ?>  
+            <?php if (count($row['tags']) > 0) : ?>                
+            <ul class="tags">
+                <?php foreach($row['tags'] as $tag) : ?>
+                <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
+                <? endforeach; ?>
+            </ul>            
+            <?php endif; ?>
         </div>
 
     </li>
 
 <?php endfor; ?>
 </ul>
+
+
+<hr />
+
+<?php include 'footer.html' ?>
