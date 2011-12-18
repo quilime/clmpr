@@ -4,6 +4,8 @@ smart urls
 filter by tags
 preview media when embedding videos from youtube, images, etc
 
+fix css style so it's prettier -- the monospace has to go
+
 tags: 
 	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
 
