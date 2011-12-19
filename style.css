@@ -1,7 +1,7 @@
 body {
      color: #444444;
      font-family: Georgia, sans-serif;
-     font-size: 13px;
+     font-size: 14px;
      line-height: 1.3em;
 }
 a {
@@ -67,7 +67,7 @@ ul.links li span.meta a {
     color:#999;
 }
 ul.links li .desc {
-    color:#009;
+    color:#00d;
 }
 ul.links li .expand {
     color:#aaa;

@@ -17,7 +17,7 @@ function approximate_time($seconds)
         case abs($seconds) <= 36 * 60 * 60:
             return round(abs($seconds) / (60 * 60)).' hours';
 
-        default:
+	    default:
             return round(abs($seconds) / (24 * 60 * 60)).' days';
     }
 }
