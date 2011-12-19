@@ -6,7 +6,10 @@ $params = array();
 $params['user'] = isset($_GET['user']) ? $_GET['user'] : null;
 $params['id']   = isset($_GET['id']) ? $_GET['id'] : null;
 
+$pathinfo = pathinfo($_SERVER['REQUEST_URI']);
 $format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
+
+$endpoint = str_replace('.'.$format, '', $endpoint);
 
 $dbh = get_db_connection();
 $dbh->beginTransaction();
@@ -24,7 +27,7 @@ try {
             $q->execute( array( $user['id'] ));
         }
     }
-    if ($params['id']) {
+    else if ($params['id']) {
         $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
                             FROM clumps 
                             JOIN users 
@@ -49,7 +52,7 @@ catch(PDOException $e)
 }
 
 switch ($format) {
-case 'xml' :
+    case 'xml' :
     case 'rss' :
         include 'rss.php';
         exit;

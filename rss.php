@@ -9,8 +9,8 @@
 
 	<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
 	<item>
-	    <title><?php echo urlencode($row['title']) ?></title>
-	    <link><?php echo urlencode($row['url']) ?></link>
+	    <title><?php echo $row['title'] ?></title>
+	    <link><?php echo $row['url'] ?></link>
 	    <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
 
 	</item>	
