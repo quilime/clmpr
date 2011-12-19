@@ -9,10 +9,10 @@
 
 	<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
 	<item>
-	    <title><?php echo urlencode($row['title']); ?></title>
+	    <title><?php echo htmlentities($row['title']); ?></title>
 	    <link><?php echo $row['url'] ?></link>
-	    <link><?php echo htmlentities($row['description']) ?></link>
-	    <link><?php echo implode(" ", $row['tags']) ?></link>
+	    <description><?php echo $row['description'] ?></description>
+	    <tags><?php echo $row['tags'] ?></tags>
 	    <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
 	</item>	
 
