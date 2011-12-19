@@ -106,32 +106,12 @@ function deleteClump( id, elem ) {
 ?>
     
     <li>
-        
-        <? /* 
-        <?php if ($hasDescription || count($row['tags']) > 0 || $user['user'] == $row['user']) : ?>
-        <a href="#" class="more" onClick="$(this.parentNode).addClass('expand');">+</a>
-        <a href="#" class="less" onClick="$(this.parentNode).removeClass('expand');">-</a>
-        <?php else : ?>
-        &nbsp; 
-        <?php endif; ?>
-        */ ?>
-
             
         <span class="url">
             <a href="<?php echo $row['url'] ?>">
                 <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
             </a>
-        </span>  
-
-        <span class="meta">
-            <?php echo date("Y-m-d", strtotime($row['date'])) ?> by 
-            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-        </span>        
-
-        <?php if ($user['user'] == $row['user']): ?>
-                <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">&#x2710;</a>
-                <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="ui delete">&times;</a>
-        <?php endif; ?>         
+        </span>     
 
         <div class="expand">
             <?php if ($hasDescription) : ?>
@@ -147,6 +127,17 @@ function deleteClump( id, elem ) {
             </ul>            
             <?php endif; ?>
         </div>
+
+
+        <span class="meta">
+            <span title="<?php echo date('r', strtotime($row['date'])); ?>"><?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by 
+            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+        </span>        
+
+        <?php if ($user['user'] == $row['user']): ?>
+            <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">&#x2710;</a>
+            <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="ui delete">&times;</a>
+        <?php endif; ?>              
 
     </li>
 

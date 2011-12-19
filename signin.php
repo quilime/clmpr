@@ -87,7 +87,7 @@
 
 <?php if ($user = get_user()) : ?>
 
-    <a href="/<?php echo $user['user']; ?>"><?php echo $user['user']; ?></a>
+    <a href="/<?php echo $user['user']; ?>"><?php echo $user['user']; ?></a>&nbsp;&nbsp;
     <a href="#" onClick="return onLogout();">logout</a>
 
 <? else:  ?>
