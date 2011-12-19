@@ -135,7 +135,7 @@ function deleteClump( id, elem ) {
 
         <span class="meta">
             <span title="<?php echo date('r', strtotime($row['date'])); ?>"><?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by 
-            <a class="uname" href="/?user=<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+            <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
         </span>        
 
         <?php if ($user['user'] == $row['user']): ?>
