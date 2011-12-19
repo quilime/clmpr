@@ -9,6 +9,7 @@ $params['id']   = isset($_GET['id']) ? $_GET['id'] : null;
 $pathinfo = pathinfo($_SERVER['REQUEST_URI']);
 $format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
 
+$endpoint = '';
 $endpoint = str_replace('.'.$format, '', $endpoint);
 
 $dbh = get_db_connection();
