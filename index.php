@@ -20,9 +20,11 @@ switch($endpoint)
 
         ?>
         <p>
-        clmpr saves internet links
+        use clmpr to save links on the internet
         
+
         <ul class="tags">
+        keywords:
         <li>bookmarks</li>
         <li>delicious-clone</li>
         <li>webservice</li>
@@ -32,6 +34,10 @@ switch($endpoint)
         <li>semantic</li>
         </ul>
 
+        </p>
+
+        <p>
+        clmpr is open source. fork the project on <a href="http://github.com/quilime/clmpr">github</a>
         </p>
 
         <?
