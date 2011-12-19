@@ -9,9 +9,9 @@
 
 	<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
 	<item>
-	    <title><?php echo htmlentities($row['title']); ?></title>
-	    <link><?php echo $row['url'] ?></link>
-	    <description><?php echo $row['description'] ?></description>
+	    <title><?php echo htmlspecialchars($row['title']); ?></title>
+	    <link><?php echo htmlspecialchars($row['url']) ?></link>
+	    <description><![CDATA[<?php echo htmlspecialchars($row['description']); ?>]]></description>
 	    <tags><?php echo $row['tags'] ?></tags>
 	    <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
 	</item>	
