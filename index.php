@@ -20,7 +20,7 @@ switch($endpoint)
 
         ?>
         <p>
-        use clmpr to save links on the internet
+        use clmpr (<b>/klum-per/</b>) to save links on the internet
         
 
         <ul class="tags">
