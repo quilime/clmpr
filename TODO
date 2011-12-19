@@ -1,13 +1,15 @@
 evaluate MVC architecture w/ template system
 templates for rss, xml
-smart urls
+clean urls
 filter by tags
 preview media when embedding videos from youtube, images, etc
+private saving
+import/export
+pagination
 
-fix css style so it's prettier -- the monospace has to go
+pages
+	help - explain bookmarklet
+	about
 
-tags: 
-	see: http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
-
-- added post-update git hook
-- added github repo push to post-update
+ref
+	http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html

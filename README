@@ -1,5 +1,5 @@
 citation, logging and multi-purpose archive = clmpr
-a minimal online bookmarking engine
+a minimal bookmarking engine
 
 clmpr allows you to save urls simply
 
@@ -9,8 +9,4 @@ requirements:
 - php
 - mysql
 
-todo (would be nice):
-- pagination
-- private urls
-- export
-
+see TODO for progress
