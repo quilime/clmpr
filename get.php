@@ -9,11 +9,12 @@ $params['id']   = isset($_GET['id']) ? $_GET['id'] : null;
 $pathinfo = pathinfo($_SERVER['REQUEST_URI']);
 $format = isset($pathinfo['extension']) ? $pathinfo['extension'] : null;
 
-$endpoint = '';
-$endpoint = str_replace('.'.$format, '', $endpoint);
 
 $dbh = get_db_connection();
 $dbh->beginTransaction();
+
+$q = null;
+$tag = null;
 
 try {
     if ($params['user']) {
@@ -36,6 +37,16 @@ try {
                             WHERE clumps.id = ? 
                             ORDER BY date DESC");
         $q->execute( array( $params['id'] ));        
+    }
+    else if ($endpoint == 'tag' && isset($urlparts[1])) {
+        $tag = $urlparts[1];
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
+                            FROM clumps 
+                            JOIN users 
+                                ON users.id = clumps.user_id 
+                            WHERE tags LIKE ?  
+                            ORDER BY date DESC");
+        $q->execute( array('%'.$tag.'%') );
     }
     else {
         $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
@@ -72,6 +83,11 @@ switch ($format) {
 
 <?php include 'header.html'; ?>
 
+<?php if ($tag) : ?>
+<p>
+<strong><a href="/tags/">tag</a>:</strong> <i><?php echo $tag ?></i>
+</p>
+<?php else: ?>
 <p>
 bookmarklet:
 <?php
@@ -80,18 +96,15 @@ bookmarklet:
 ?>
 <a href="javascript:<?=$js?>">+</a>
 </p>
+<?php endif; ?>
 
-<p>
-<a href="http://<?php echo BASE_URL; ?><?php echo $_SERVER['REQUEST_URI'] ?>.xml">rss</a>
-</p>
 
 <hr />
-
 
 <script>
 function deleteClump( id, elem ) {
     if (confirm("confirm delete")) {
-        $.post('delete.php', { clump_id : id }, function(result) {
+        $.post('/delete.php', { clump_id : id }, function(result) {
             $(elem).hide();
         }, 'json');
         return false;
@@ -99,8 +112,9 @@ function deleteClump( id, elem ) {
 }
 </script>
 
+
 <ul class="links">
-<?php for($i = 0; $row = $q->fetch(); $i++ ): 
+<?php if ($q) : for($i = 0; $row = $q->fetch(); $i++ ): 
 
     # process description
     $hasDescription = $row['description'] || false;
@@ -130,7 +144,7 @@ function deleteClump( id, elem ) {
             <?php if (count($row['tags']) > 0) : ?>                
             <ul class="tags">
                 <?php foreach($row['tags'] as $tag) : ?>
-                <li><a href="/tags.php?tag=<?=$tag?>"><?=$tag?></a></li>
+                <li><a href="/tag/<?=$tag?>"><?=$tag?></a></li>
                 <? endforeach; ?>
             </ul>            
             <?php endif; ?>
@@ -144,12 +158,12 @@ function deleteClump( id, elem ) {
 
         <?php if ($user['user'] == $row['user']): ?>
             <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">&#x2710;</a>
-            <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode);" class="ui delete">&times;</a>
+            <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode.parentNode);" class="ui delete">&times;</a>
         <?php endif; ?>              
 
     </li>
 
-<?php endfor; ?>
+<?php endfor; endif; ?>
 </ul>
 
 

@@ -48,7 +48,7 @@
         var user = $('#nuser').val();
         var pass = $('#npass').val();
         $('#register').text("creating user...");
-        $.post('signup.php', { user : user, pass : pass }, function(result) {
+        $.post('/signup.php', { user : user, pass : pass }, function(result) {
             if (result.success = 'true') {
                 window.location.reload();
             }
@@ -65,7 +65,7 @@
         var user = $('#user').val();
         var pass = $('#pass').val();
         $('#signin').text("signing in...");
-        $.post('signin.php', { user : user, pass : pass }, function(result) {
+        $.post('/signin.php', { user : user, pass : pass }, function(result) {
             window.location.reload();
         }, 'json');
     }
@@ -73,7 +73,7 @@
 
     function onLogout()
     {
-        $.post('signin.php', { logout : 1 }, function(result) {
+        $.post('/signin.php', { logout : 1 }, function(result) {
             $('#signin').html(result.mssg);
             window.location.reload();
         }, 'json');
