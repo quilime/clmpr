@@ -42,7 +42,7 @@ catch(PDOException $e)
 <script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
     // user tags array
     var userTags = [];
@@ -53,7 +53,6 @@ $(document).ready(function() {
         tabIndex : 3
     });
 });
-
 function deleteClump( id ) {
     if (confirm("confirm delete")) {
         $.post('delete.php', { clump_id : id }, function(result) {
