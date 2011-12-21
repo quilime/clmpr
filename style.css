@@ -121,3 +121,8 @@ ul.tags li:after {
 ul.tags li:last-child:after {
     content:"";
 }
+
+
+#tags li {
+    font-size:14px;
+}
