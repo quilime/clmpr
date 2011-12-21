@@ -28,7 +28,7 @@ try {
             </p>
     		
             <p>
-    		<label>tags (space delimited)</label>
+    		<label>tags (SPACEBAR delimited)</label>
     		<input type="text" name="tags" value="">    		    		
             </p>
 
