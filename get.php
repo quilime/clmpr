@@ -81,6 +81,10 @@ bookmarklet:
 <a href="javascript:<?=$js?>">+</a>
 </p>
 
+<p>
+<a href="http://<?php echo BASE_URL; ?><?php echo $_SERVER['REQUEST_URI'] ?>.xml">rss</a>
+</p>
+
 <hr />
 
 
