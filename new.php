@@ -9,7 +9,34 @@ $params['url']  = isset($_GET['url'])  ? $_GET['url']  : null;
 
 try {
 
-	include 'head.html';
+    ?>
+
+    <!DOCTYPE html><head>
+	<?php include 'head.html'; ?>
+
+    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery.tagit.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/clmpr.tagit.css" />
+
+    <script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+    $(document).ready(function() {
+        var userTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"];
+
+        $("#tag-input").tagit({
+            availableTags : userTags,
+            animate : false,
+            tabIndex : 3
+        });
+        $('.tagit input')[0].focus();
+    });
+    </script>
+
+    </head><body>
+
+    <?
 
     if ($user = get_user()) {
 
@@ -31,9 +58,9 @@ try {
             <ul id="tag-help" style="display:none">
                 <li><span class="bull">&bull;</span>tag characters: [a-z 0-9 + # - .]</li>
                 <li><span class="bull">&bull;</span>combine multiple words into single-words with dashes</li>
-                <li><span class="bull">&bull;</span>delimit tags by space, semicolon, or comma</li>
+                <li><span class="bull">&bull;</span>delimit tags by space or comma</li>
             </ul>
-    		<input type="text" name="tags" tabindex="3" value="">
+    		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
 
             <p>
             <label>description</label>
@@ -50,18 +77,7 @@ try {
     		<br />
     		<br />
 
-
-
-
     	</form>
-
-    	<?php // include 'footer.html'; ?>
-
-    	<script>
-    		window.onload = function() {
-    			document.forms[0].tags.focus();
-    		}
-	    </script>
 
     	<?php
 
