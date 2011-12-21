@@ -44,18 +44,14 @@ catch(PDOException $e)
 
 <script>
 $(document).ready(function() {
-
     // user tags array
     var userTags = [];
-
     $("#tag-input").tagit({
         availableTags : userTags,
         animate : false,
         spaceChar : '-',
         tabIndex : 3
     });
-    $('.tagit input')[0].focus();
-
 });
 
 function deleteClump( id ) {

@@ -5,6 +5,7 @@ preview media when embedding videos from youtube, images, etc
 private saving
 import/export
 pagination
+tag autocomplete from user tags
 
 allow commas or space delimited
 
