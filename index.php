@@ -19,30 +19,54 @@ switch($endpoint)
         echo '<hr />';
 
         ?>
+
         <p>
-        use clmpr (<b>/klum-per/</b>) to save links on the internet
-        
-
-        <ul class="tags">
-        keywords:
-        <li>bookmarks</li>
-        <li>delicious-clone</li>
-        <li>webservice</li>
-        <li>database</li>
-        <li>mindmap</li>
-        <li>citation</li>
-        <li>semantic</li>
-        </ul>
-
+        <b>c</b>itation, <b>l</b>ogging and <b>m</b>ulti-<b>p</b>urpose a<b>r</b>chive
+        <br />
+        <br />
         </p>
 
         <p>
-        clmpr is open source. fork the project on <a href="http://github.com/quilime/clmpr">github</a>
-        </p>
+
+        use clmpr (<b>/klum-per/</b>) to save bookmarks.
+
+
+<p>
+
+<strong>to use: </strong>
+<?php
+    $js = file_get_contents('bookmarklet.js');
+    $js = str_replace('{BASE_URL}', BASE_URL, $js);
+?>
+drag this link [<a href="javascript:<?=$js?>">+</a>] to your bookmark bar
+<br />
+<br />
+</p>     
+
+<p>
+project keywords: <i>
+bookmarks, 
+delicious-clone.
+webservice,
+database,
+mindmap,
+citation,
+semantic
+</i>
+
+<br /><br />
+</p>
+
+
+
+
+<p>
+clmpr is open source. fork the project on <a href="http://github.com/quilime/clmpr">github</a>
+</p>
 
         <?
 
-        echo '&copy; 2011 <a href="http://quilime.com">gabriel dunne</a>';
+        //echo '&copy; 2011 <a href="http://quilime.com">gabriel dunne</a>';
         echo '<hr />';
         include 'footer.html';
         exit;
