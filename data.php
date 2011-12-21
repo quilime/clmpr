@@ -38,3 +38,30 @@ function get_users(&$dbh, $args)
 
     return false;
 }
+
+
+function filter_tags($tagstr) {
+    
+    $tags = array();
+
+    # split on commas if using commas
+    if (strstr($tagstr, ',')) {
+        $tags = explode(",", $tagstr);
+        # replace spaces with pluses
+        $tags = array_map(function ($tag) {
+            $tag = trim($tag);
+            return strpos($tag, " ") ? str_replace(" ", "+", $tag) : $tag;
+        }, $tags);
+    } 
+    
+    # else, split on spaces
+    else {
+        $tags = explode(" ", $tagstr);
+        $tags = array_map(function ($tag) {
+            return trim($tag);
+        }, $tags);
+    }
+
+    #filter tag dupes
+    return array_unique($tags);
+}

@@ -29,11 +29,10 @@ try {
         $clump['tags'] = explode(" ", $clump['tags']);
  
         # process tags
-        $tags = explode(" ", $params['tags']);
-        $tags = array_unique($tags);
-        $tags_to_keep = array_intersect($tags, $clump['tags']);
-        $tags_to_delete = array_diff($clump['tags'], $tags_to_keep);
-        $tags_to_add = array_diff($tags, $tags_to_keep);
+        $tags = filter_tags($params['tags']);
+        $tags_to_keep   = array_intersect ($tags,          $clump['tags']);
+        $tags_to_delete = array_diff      ($clump['tags'], $tags_to_keep);
+        $tags_to_add    = array_diff      ($tags,          $tags_to_keep);
 
         # add/increment new tags
         if (count($tags_to_add) > 0) {

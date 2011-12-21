@@ -18,24 +18,37 @@ try {
         $dbh->beginTransaction();
 
         # process tags
-        $tags = explode(" ", $params['tags']);
-        $tags = array_unique($tags);
+        $tags = filter_tags($params['tags']);
+        print_r($tags);
+        echo '<br />TODO: figure out delimiter for spaces for database';
+        exit;
+
+        #insert tags
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
-                $sql = "INSERT INTO `clmpr`.`tags` ( `tag`, `count` ) 
-                        VALUES ( ?, 1 ) 
-                        ON DUPLICATE KEY UPDATE
-                            `count` = `count` + 1";
-                $q = $dbh->prepare($sql);
+                $q = $dbh->prepare("INSERT INTO `clmpr`.`tags` (`tag`, `count`) 
+                                    VALUES ( ?, 1 ) 
+                                    ON DUPLICATE KEY 
+                                        UPDATE `count` = `count` + 1");
                 $q->execute( array( $tag ));
             }
         }
 
         # insert clump
-        $sql = "INSERT INTO `clmpr`.`clumps` ( `user_id`, `title` , `url` , `tags`, `description`, `date` )
-                VALUES ( ?, ?, ?, ?, ?, NOW() ) ";  
-        $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $user['id'], $params['title'], $params['url'], implode(" ", $tags), htmlentities($params['description']) ));
+        $q = $dbh->prepare("INSERT INTO `clmpr`.`clumps` 
+                          ( `user_id`, 
+                            `title`, 
+                            `url`, 
+                            `tags`, 
+                            `description`, 
+                            `date` )
+                        VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
+        $insert = $q->execute( array( 
+                    $user['id'], 
+                    $params['title'], 
+                    $params['url'], 
+                    implode(" ", $tags), 
+                    htmlentities($params['description'])));
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';

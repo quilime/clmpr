@@ -28,7 +28,7 @@ try {
             </p>
     		
             <p>
-    		<label>tags (SPACEBAR delimited)</label>
+    		<label>tags <span style="font-weight:normal">(space " " or comma "," delimited)</span></label>
     		<input type="text" name="tags" value="">    		    		
             </p>
 
