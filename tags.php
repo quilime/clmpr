@@ -52,7 +52,7 @@ catch(PDOException $e)
 
 <ul class="tags" id="tags">
 <?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
-    <li><span class="tag"><a href="<?php echo $row['tag'] ?>"><?php echo $row['tag'] ?></a> <?php echo $row['count'] ?></span></li>
+    <li><span class="tag"><a href="/tag/<?php echo $row['tag'] ?>"><?php echo $row['tag'] ?></a> <?php echo $row['count'] ?></span></li>
 <?php endfor; ?>
 </ul>
 

@@ -10,6 +10,13 @@
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
+            if (!$params['user'] || in_array($params['user'], $username_exceptions)) {
+                throw new Exception("invalid username");
+            }
+            // if (!$params['pass']) {
+            //     throw new Exception("invalid password");
+            // }
+
             $dbh = get_db_connection();
             $dbh->beginTransaction();
 
