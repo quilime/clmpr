@@ -81,7 +81,7 @@ ul.links li .tags {
 
 
 .ui {
-    color:#444 !important;
+    color:#555 !important;
     background:#e4e4e4;
     display:inline-block;
     font-style:normal;
@@ -91,7 +91,7 @@ ul.links li .tags {
 }
 .ui:hover {
     color:#333;
-    background:#eee;
+    background:#f4f4f4;
 }
 .ui.delete {
 }
