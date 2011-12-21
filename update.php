@@ -9,6 +9,9 @@ $params['url']   = isset($_POST['url'])   ? $_POST['url']  : null;
 $params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
 $params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
 
+//print_r($_POST);
+//exit;
+
 try {
 
     if ($user = get_user() && $params['id']) {
@@ -17,19 +20,19 @@ try {
         $dbh->beginTransaction();
 
         if ($params['id']) {
-            $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                                FROM clumps 
-                                JOIN users 
-                                    ON users.id = clumps.user_id 
-                                WHERE clumps.id = ? 
+            $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                                FROM clumps
+                                JOIN users
+                                    ON users.id = clumps.user_id
+                                WHERE clumps.id = ?
                                 ORDER BY date DESC");
-            $q->execute( array( $params['id'] ));        
+            $q->execute( array( $params['id'] ));
         }
         $clump = $q->fetch();
-        $clump['tags'] = explode(" ", $clump['tags']);
- 
+        $clump['tags'] = explode(",", $clump['tags']);
+
         # process tags
-        $tags = filter_tags($params['tags']);
+        $tags = explode(',', $params['tags']);
         $tags_to_keep   = array_intersect ($tags,          $clump['tags']);
         $tags_to_delete = array_diff      ($clump['tags'], $tags_to_keep);
         $tags_to_add    = array_diff      ($tags,          $tags_to_keep);
@@ -37,8 +40,8 @@ try {
         # add/increment new tags
         if (count($tags_to_add) > 0) {
             foreach($tags_to_add as $key => $tag) {
-                $sql = "INSERT INTO `clmpr`.`tags` ( `tag`, `count` ) 
-                        VALUES ( ?, 1 ) 
+                $sql = "INSERT INTO `clmpr`.`tags` ( `tag`, `count` )
+                        VALUES ( ?, 1 )
                         ON DUPLICATE KEY UPDATE
                             `count` = `count` + 1";
                 $q = $dbh->prepare($sql);
@@ -56,14 +59,14 @@ try {
                 $q = $dbh->prepare($sql);
                 $q->execute( array( $tag ));
             }
-        }               
+        }
 
         # update clump
-        $sql = "UPDATE `clumps` 
-                SET `url` = ?, `tags` = ?, `title` = ?, `description` = ? 
+        $sql = "UPDATE `clumps`
+                SET `url` = ?, `tags` = ?, `title` = ?, `description` = ?
                 WHERE `id` = ?";
         $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $params['url'], implode(" ", $tags), $params['title'], $params['description'], $params['id']));
+        $insert = $q->execute( array( $params['url'], implode(",", $tags), $params['title'], $params['description'], $params['id']));
 
         header('Location: /get.php?id=' . $params['id']);
         //echo "clumped.<br/><br/>";
@@ -71,7 +74,7 @@ try {
         //echo '<script>window.close();</script>';
 
         $dbh = null;
-        $q = null;    
+        $q = null;
 
     } else {
         include 'signin.php';

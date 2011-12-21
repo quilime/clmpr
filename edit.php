@@ -81,19 +81,25 @@ function deleteClump( id ) {
     <input type="text" name="url" value="<?php echo $clump['url']; ?>">
     </p>
 
-    <p>
-    <label>tags</label>
-    <input type="text" id="tag-input" name="tags" value="<?php echo str_replace(' ', ',', $clump['tags']); ?>">
-    </p>
+
+    <label>tags <a href="#" class="ui tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a></label>
+    <ul id="tag-help" style="display:none">
+        <li><span class="bull">&bull;</span>combine "multiple words" with quotes</li>
+        <li><span class="bull">&bull;</span>separate tags by space, comma, semicolon, or enter</li>
+    </ul>
+    <input type="text" id="tag-input" name="tags" value="<?php echo $clump['tags']; ?>">
+
 
     <p>
     <label>description</label>
-    <input type="text" name="description" value="<?php echo $clump['description']; ?>">
+    <input type="text" name="description" value="<?php echo htmlentities($clump['description']); ?>">
     </p>
 
     <p>
-        saved <?php echo date("Y-m-d", strtotime($clump['date'])) ?> by
-        <a class="uname" href="/?user=<?php echo $clump['user'] ?>"><?php echo $clump['user'] ?></a>
+        <span class="meta" title="<?php echo date('r', strtotime($clump['date'])); ?>">
+            saved <?php echo approximate_time(date('U') - strtotime($clump['date'])) ?> ago</a> by
+            <a class="uname" href="/<?php echo $clump['user'] ?>"><?php echo $clump['user'] ?></a>
+        </span>
     </p>
 
     <br />

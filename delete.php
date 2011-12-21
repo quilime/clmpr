@@ -14,17 +14,17 @@ try {
     if ($user && $params['clump_id']) {
 
         # get current clump
-        $q = $dbh->prepare("SELECT * 
+        $q = $dbh->prepare("SELECT *
                             FROM clumps
-                            JOIN users ON users.id = clumps.user_id 
-                            WHERE user_id = ? AND clumps.id = ? 
+                            JOIN users ON users.id = clumps.user_id
+                            WHERE user_id = ? AND clumps.id = ?
                             LIMIT 1");
         $q->execute( array( $user['id'], $params['clump_id'] ));
         $row = $q->fetch();
 
         # decrement tag count in DB
         # note: leaves tags in database with count of '0' if not used
-        $tags = explode(" ", $row['tags']);
+        $tags = explode(",", $row['tags']);
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
                 $sql = "UPDATE tags
@@ -33,20 +33,20 @@ try {
                 $q = $dbh->prepare($sql);
                 $q->execute( array( $tag ));
             }
-        }            
+        }
 
         # delete clump
         $sql = "DELETE FROM clumps WHERE id = ? AND user_id = ?";
         $q = $dbh->prepare($sql);
         $count = $q->execute( array( $params['clump_id'], $user['id'] ));
-        echo json_encode(array('deleted' => true));        
+        echo json_encode(array('deleted' => true));
     } else {
         echo json_encode(array('mssg' => 'must be logged in'));
     }
 
     $dbh = null;
-    $q = null;    
-    
+    $q = null;
+
 }
 catch(PDOException $e)
 {

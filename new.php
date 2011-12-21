@@ -29,7 +29,6 @@ try {
         $("#tag-input").tagit({
             availableTags : userTags,
             animate : false,
-            spaceChar : '-',
             tabIndex : 3
         });
         $('.tagit input')[0].focus();
@@ -56,14 +55,11 @@ try {
     		<input type="text" name="url" tabindex="2" value="<?=$params['url']?>">
             </p>
 
-    		<label>tags <!-- <a href="#" class="tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a> --></label>
-            <!--
+    		<label>tags <a href="#" class="ui tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a></label>
             <ul id="tag-help" style="display:none">
-                <li><span class="bull">&bull;</span>tag characters: [a-z 0-9 + # - .]</li>
-                <li><span class="bull">&bull;</span>combine multiple words into single-words with dashes</li>
-                <li><span class="bull">&bull;</span>delimit tags by space, comma, semicolon, or the enter key</li>
+                <li><span class="bull">&bull;</span>combine "multiple words" with quotes</li>
+                <li><span class="bull">&bull;</span>separate tags by space, comma, semicolon, enter</li>
             </ul>
-            -->
     		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
 
             <p>

@@ -20,39 +20,39 @@ try {
     if ($params['user']) {
         $user = get_users($dbh, array('user' => $params['user'] ));
         if ($user) {
-            $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                                FROM clumps 
-                                JOIN users 
-                                    ON users.id = clumps.user_id 
-                                WHERE user_id = ? 
+            $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                                FROM clumps
+                                JOIN users
+                                    ON users.id = clumps.user_id
+                                WHERE user_id = ?
                                 ORDER BY date DESC");
             $q->execute( array( $user['id'] ));
         }
     }
     else if ($params['id']) {
-        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                            FROM clumps 
-                            JOIN users 
-                                ON users.id = clumps.user_id 
-                            WHERE clumps.id = ? 
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                            FROM clumps
+                            JOIN users
+                                ON users.id = clumps.user_id
+                            WHERE clumps.id = ?
                             ORDER BY date DESC");
-        $q->execute( array( $params['id'] ));        
+        $q->execute( array( $params['id'] ));
     }
     else if ($endpoint == 'tag' && isset($urlparts[1])) {
         $tag = $urlparts[1];
-        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                            FROM clumps 
-                            JOIN users 
-                                ON users.id = clumps.user_id 
-                            WHERE tags LIKE ?  
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                            FROM clumps
+                            JOIN users
+                                ON users.id = clumps.user_id
+                            WHERE tags LIKE ?
                             ORDER BY date DESC");
         $q->execute( array('%'.$tag.'%') );
     }
     else {
-        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                            FROM clumps 
-                            JOIN users 
-                                ON users.id = clumps.user_id 
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                            FROM clumps
+                            JOIN users
+                                ON users.id = clumps.user_id
                             ORDER BY date DESC");
         $q->execute();
     }
@@ -114,7 +114,7 @@ function deleteClump( id, elem ) {
 
 
 <ul class="links">
-<?php if ($q) : for($i = 0; $row = $q->fetch(); $i++ ): 
+<?php if ($q) : for($i = 0; $row = $q->fetch(); $i++ ):
 
     # process description
     $hasDescription = $row['description'] || false;
@@ -123,38 +123,37 @@ function deleteClump( id, elem ) {
     if ($row['tags'] == '')
         $row['tags'] = array();
     else
-        $row['tags'] = explode(" ", $row['tags']);
+        $row['tags'] = explode(",", $row['tags']);
 
 ?>
-    
+
     <li>
-            
+
         <span class="url">
             <a href="<?php echo $row['url'] ?>">
                 <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
             </a>
-        </span>     
+        </span>
 
         <div class="expand">
             <?php if ($hasDescription) : ?>
                 <span class="desc">
-                <?php echo $row['description']; ?>
+                <?php echo htmlentities($row['description']); ?>
                 </span>
-            <?php endif; ?>  
-            <?php if (count($row['tags']) > 0) : ?>                
+            <?php endif; ?>
+            <?php if (count($row['tags']) > 0) : ?>
             <ul class="tags">
                 <?php foreach($row['tags'] as $tag) : ?>
                 <li><a href="/tag/<?=$tag?>"><?=$tag?></a></li>
                 <? endforeach; ?>
-            </ul>            
+            </ul>
             <?php endif; ?>
         </div>
-
 
         <span class="meta">
 
             <span title="<?php echo date('r', strtotime($row['date'])); ?>">
-                <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by 
+                <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by
                 <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
             </span>
 

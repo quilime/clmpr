@@ -4,9 +4,9 @@ include 'init.php';
 
 $params = array();
 $params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
-$params['url']   = isset($_POST['url'])  ? $_POST['url']  : null;
-$params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
-$params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
+$params['url'] = isset($_POST['url']) ? $_POST['url'] : null;
+$params['tags'] = isset($_POST['tags']) ? $_POST['tags'] : null;
+$params['description'] = isset($_POST['description']) ? $_POST['description'] : null;
 
 include 'head.html';
 
@@ -17,35 +17,26 @@ try {
         $dbh = get_db_connection();
         $dbh->beginTransaction();
 
-        # filter tags
-        $tags = filter_tags($params['tags']);
-
-        #insert tags
+        # process tags
+        $tags = explode(',', $params['tags']);
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
-                $q = $dbh->prepare("INSERT INTO `clmpr`.`tags` (`tag`, `count`)
+                $q = $dbh->prepare("INSERT INTO `tags` (`tag`, `count`)
                                     VALUES ( ?, 1 )
                                     ON DUPLICATE KEY
-                                        UPDATE `count` = `count` + 1");
+                                    UPDATE `count` = `count` + 1");
                 $q->execute(array($tag));
             }
         }
 
         # insert clump
-        $q = $dbh->prepare("INSERT INTO `clmpr`.`clumps`
-                          ( `user_id`,
-                            `title`,
-                            `url`,
-                            `tags`,
-                            `description`,
-                            `date` )
-                        VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
+        $q = $dbh->prepare("INSERT INTO `clumps`
+                          ( `user_id`, `title`, `url`,
+                            `tags`, `description`, `date` )
+                            VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
         $insert = $q->execute( array(
-                    $user['id'],
-                    $params['title'],
-                    $params['url'],
-                    implode(" ", $tags),
-                    htmlentities($params['description'])));
+                    $user['id'], $params['title'], $params['url'],
+                    $params['tags'], $params['description']));
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';

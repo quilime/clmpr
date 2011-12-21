@@ -63,14 +63,6 @@ ul.links li span.url a {
 ul.links li span.url a:hover {
     text-decoration:none;
 }
-ul.links li span.meta {
-    color:#bbb;
-    font-style:italic;
-    font-size:12px;
-}
-ul.links li span.meta a {
-    color:#999;
-}
 ul.links li .desc {
     color:#00d;
 }
@@ -82,6 +74,15 @@ ul.links li .desc {
 }
 ul.links li .tags {
     display:block;
+}
+
+.meta {
+    color:#bbb;
+    font-style:italic;
+    font-size:12px;
+}
+.meta a {
+    color:#999;
 }
 
 
