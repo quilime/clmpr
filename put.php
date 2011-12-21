@@ -17,10 +17,8 @@ try {
         $dbh = get_db_connection();
         $dbh->beginTransaction();
 
-        # process tags
+        # filter tags
         $tags = filter_tags($params['tags']);
-        print_r($tags);
-        exit;
 
         #insert tags
         if (count($tags) > 0) {

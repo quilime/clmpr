@@ -11,11 +11,11 @@ $dbh->beginTransaction();
 try {
     if ($params['id']) {
         $user = get_user();
-        $q = $dbh->prepare("SELECT *, clumps.id as clump_id 
-                            FROM clumps 
-                            JOIN users 
-                                ON users.id = clumps.user_id 
-                            WHERE clumps.id = ? 
+        $q = $dbh->prepare("SELECT *, clumps.id as clump_id
+                            FROM clumps
+                            JOIN users
+                                ON users.id = clumps.user_id
+                            WHERE clumps.id = ?
                             ORDER BY date DESC
                             ");
         $q->execute( array( $params['id'] ));
@@ -29,14 +29,35 @@ catch(PDOException $e)
     exit;
 }
 
-?><!DOCTYPE html>
-
-<head>
-<title>clmpr - <?=$clump['title']?></title>
+?><!DOCTYPE html><head>
 
 <?php include 'head.html'; ?>
 
+<title>clmpr - <?=$clump['title']?></title>
+
+<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery.tagit.css" />
+<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/clmpr.tagit.css" />
+
+<script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
 <script>
+$(document).ready(function() {
+
+    // user tags array
+    var userTags = [];
+
+    $("#tag-input").tagit({
+        availableTags : userTags,
+        animate : false,
+        spaceChar : '-',
+        tabIndex : 3
+    });
+    $('.tagit input')[0].focus();
+
+});
+
 function deleteClump( id ) {
     if (confirm("confirm delete")) {
         $.post('delete.php', { clump_id : id }, function(result) {
@@ -47,8 +68,7 @@ function deleteClump( id ) {
 }
 </script>
 
-</head>
-<body>
+</head><body>
 
 <?php include 'header.html'; ?>
 
@@ -65,10 +85,10 @@ function deleteClump( id ) {
     <label>url <a href="<?php echo $clump['url']; ?>" class="ui">visit&rarr;</a></label>
     <input type="text" name="url" value="<?php echo $clump['url']; ?>">
     </p>
-    
+
     <p>
-    <label>tags (space delimited)</label>
-    <input type="text" name="tags" value="<?php echo $clump['tags']; ?>">
+    <label>tags</label>
+    <input type="text" id="tag-input" name="tags" value="<?php echo str_replace(' ', ',', $clump['tags']); ?>">
     </p>
 
     <p>
@@ -77,8 +97,8 @@ function deleteClump( id ) {
     </p>
 
     <p>
-        saved <?php echo date("Y-m-d", strtotime($clump['date'])) ?> by 
-        <a class="uname" href="/?user=<?php echo $clump['user'] ?>"><?php echo $clump['user'] ?></a>    
+        saved <?php echo date("Y-m-d", strtotime($clump['date'])) ?> by
+        <a class="uname" href="/?user=<?php echo $clump['user'] ?>"><?php echo $clump['user'] ?></a>
     </p>
 
     <br />
