@@ -152,14 +152,18 @@ function deleteClump( id, elem ) {
 
 
         <span class="meta">
-            <span title="<?php echo date('r', strtotime($row['date'])); ?>"><?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by 
-            <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
-        </span>        
+
+            <span title="<?php echo date('r', strtotime($row['date'])); ?>">
+                <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by 
+                <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
+            </span>
 
         <?php if ($user['user'] == $row['user']): ?>
-            <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">&#x2710;</a>
-            <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode.parentNode);" class="ui delete">&times;</a>
-        <?php endif; ?>              
+            <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">edit</a>
+            <a href="#" title="Delete" onClick="return deleteClump(<?php echo $row['clump_id']; ?>, this.parentNode.parentNode);" class="ui delete">delete</a>
+        <?php endif; ?>
+
+        </span>
 
     </li>
 
