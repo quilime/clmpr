@@ -26,28 +26,28 @@ try {
         #insert tags
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
-                $q = $dbh->prepare("INSERT INTO `clmpr`.`tags` (`tag`, `count`) 
-                                    VALUES ( ?, 1 ) 
-                                    ON DUPLICATE KEY 
+                $q = $dbh->prepare("INSERT INTO `clmpr`.`tags` (`tag`, `count`)
+                                    VALUES ( ?, 1 )
+                                    ON DUPLICATE KEY
                                         UPDATE `count` = `count` + 1");
-                $q->execute( array( $tag ));
+                $q->execute(array($tag));
             }
         }
 
         # insert clump
-        $q = $dbh->prepare("INSERT INTO `clmpr`.`clumps` 
-                          ( `user_id`, 
-                            `title`, 
-                            `url`, 
-                            `tags`, 
-                            `description`, 
+        $q = $dbh->prepare("INSERT INTO `clmpr`.`clumps`
+                          ( `user_id`,
+                            `title`,
+                            `url`,
+                            `tags`,
+                            `description`,
                             `date` )
                         VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
-        $insert = $q->execute( array( 
-                    $user['id'], 
-                    $params['title'], 
-                    $params['url'], 
-                    implode(" ", $tags), 
+        $insert = $q->execute( array(
+                    $user['id'],
+                    $params['title'],
+                    $params['url'],
+                    implode(" ", $tags),
                     htmlentities($params['description'])));
 
         echo "clumped.<br/><br/>";
@@ -55,7 +55,7 @@ try {
         echo '<script>window.close();</script>';
 
         $dbh = null;
-        $q = null;    
+        $q = null;
 
     } else {
         include 'signin.php';

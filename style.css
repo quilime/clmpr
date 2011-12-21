@@ -24,6 +24,11 @@ hr {
     border-bottom:1px dotted #888;
 }
 
+.bull {
+    display:inline-block;
+    margin-right:0.6em;
+}
+
 
 .header, .header a {
      color: #888888;
@@ -126,6 +131,14 @@ ul.tags li:last-child:after {
     content:"";
 }
 
+.tag-help {
+    font-weight:normal;
+    font-size:12px;
+}
+#tag-help {
+    margin:0.1em 0 0.3em 0.5em;
+    font-size:12px;
+}
 
 #tags li {
     font-size:14px;
