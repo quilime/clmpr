@@ -2,9 +2,6 @@
 
 include 'init.php';
 
-print_r($_POST);
-exit;
-
 $params = array();
 $params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
 $params['url']   = isset($_POST['url'])  ? $_POST['url']  : null;
@@ -23,7 +20,6 @@ try {
         # process tags
         $tags = filter_tags($params['tags']);
         print_r($tags);
-        echo '<br />TODO: figure out delimiter for spaces for database';
         exit;
 
         #insert tags

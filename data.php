@@ -41,19 +41,19 @@ function get_users(&$dbh, $args)
 
 
 function filter_tags($tagstr) {
-    
+
     $tags = array();
 
     # split on commas if using commas
     if (strstr($tagstr, ',')) {
         $tags = explode(",", $tagstr);
-        # replace spaces with pluses
+        # replace spaces with dashes
         $tags = array_map(function ($tag) {
             $tag = trim($tag);
-            return strpos($tag, " ") ? str_replace(" ", "+", $tag) : $tag;
+            return strpos($tag, " ") ? str_replace(" ", "-", $tag) : $tag;
         }, $tags);
-    } 
-    
+    }
+
     # else, split on spaces
     else {
         $tags = explode(" ", $tagstr);

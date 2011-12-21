@@ -10,7 +10,6 @@ $params['url']  = isset($_GET['url'])  ? $_GET['url']  : null;
 try {
 
     ?>
-
     <!DOCTYPE html><head>
 	<?php include 'head.html'; ?>
 
@@ -23,20 +22,23 @@ try {
 
     <script>
     $(document).ready(function() {
-        var userTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"];
+
+        // user tags array
+        var userTags = [];
 
         $("#tag-input").tagit({
             availableTags : userTags,
             animate : false,
+            spaceChar : '-',
             tabIndex : 3
         });
         $('.tagit input')[0].focus();
+
     });
     </script>
 
     </head><body>
-
-    <?
+    <?php
 
     if ($user = get_user()) {
 
@@ -54,12 +56,14 @@ try {
     		<input type="text" name="url" tabindex="2" value="<?=$params['url']?>">
             </p>
 
-    		<label>tags <a href="#" class="tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a></label>
+    		<label>tags <!-- <a href="#" class="tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a> --></label>
+            <!--
             <ul id="tag-help" style="display:none">
                 <li><span class="bull">&bull;</span>tag characters: [a-z 0-9 + # - .]</li>
                 <li><span class="bull">&bull;</span>combine multiple words into single-words with dashes</li>
-                <li><span class="bull">&bull;</span>delimit tags by space or comma</li>
+                <li><span class="bull">&bull;</span>delimit tags by space, comma, semicolon, or the enter key</li>
             </ul>
+            -->
     		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
 
             <p>
