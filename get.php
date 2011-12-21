@@ -98,7 +98,6 @@ bookmarklet:
 </p>
 <?php endif; ?>
 
-
 <hr />
 
 <script>
