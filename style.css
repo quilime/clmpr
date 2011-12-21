@@ -86,17 +86,14 @@ ul.links li .tags {
 
 
 .ui {
-    color:#555 !important;
-    background:#e4e4e4;
-    display:inline-block;
+    font-size:12px;
+    font-weight:normal;
+    color:#55d !important;
     font-style:normal;
-    font-size:11px;
-    line-height:1.3em;
-    padding:0.1em 0.5em 0.03em 0.5em;
+    text-decoration:underline;
 }
 .ui:hover {
-    color:#333;
-    background:#f4f4f4;
+    text-decoration:none;
 }
 .ui.delete {
 }
@@ -130,6 +127,9 @@ ul.tags li:after {
 ul.tags li:last-child:after {
     content:"";
 }
+
+
+
 
 .tag-help {
     font-weight:normal;

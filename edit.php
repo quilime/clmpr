@@ -78,7 +78,7 @@ function deleteClump( id ) {
     </p>
 
     <p>
-    <label>url <a href="<?php echo $clump['url']; ?>" class="ui">visit&rarr;</a></label>
+    <label>url &nbsp;<a href="<?php echo $clump['url']; ?>" class="ui">go</a></label>
     <input type="text" name="url" value="<?php echo $clump['url']; ?>">
     </p>
 
