@@ -73,26 +73,22 @@ function deleteClump( id ) {
 
     <p>
     <label>title</label>
-    <input type="text" name="title" value="<?php echo htmlentities($clump['title']); ?>">
+    <input type="text" tabindex="1" name="title" value="<?php echo htmlentities($clump['title']); ?>">
     </p>
 
     <p>
     <label>url &nbsp;<a href="<?php echo $clump['url']; ?>" class="ui">go</a></label>
-    <input type="text" name="url" value="<?php echo $clump['url']; ?>">
+    <input type="text" tabindex="2" name="url" value="<?php echo $clump['url']; ?>">
     </p>
 
-
-    <label>tags <a href="#" class="ui tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a></label>
-    <ul id="tag-help" style="display:none">
-        <li><span class="bull">&bull;</span>combine "multiple words" with quotes</li>
-        <li><span class="bull">&bull;</span>separate tags by space, comma, or enter</li>
-    </ul>
-    <input type="text" id="tag-input" name="tags" value="<?php echo $clump['tags']; ?>">
-
+    <p>
+    <label>tags <span class="ui">(combine "multiple words" with quotes)</span></label>
+    <input type="text" tabindex="3" id="tag-input" name="tags" value="<?php echo $clump['tags']; ?>">
+    <p>
 
     <p>
     <label>description</label>
-    <input type="text" name="description" value="<?php echo htmlentities($clump['description']); ?>">
+    <input type="text" tabindex="4" name="description" value="<?php echo htmlentities($clump['description']); ?>">
     </p>
 
     <p>
@@ -107,7 +103,7 @@ function deleteClump( id ) {
     <?php if ($canEdit) : ?>
         <p>
         <input type="hidden" value="<?php echo $clump['clump_id']; ?>" name="id" />
-        <input type="submit" value="save">
+        <input type="submit" tabindex="5" value="save">
         <a href="#" onClick="return deleteClump(<?php echo $clump['clump_id']; ?>);">delete</a>
         </p>
     <? endif; ?>

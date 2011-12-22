@@ -89,11 +89,13 @@ ul.links li .tags {
 .ui {
     font-size:12px;
     font-weight:normal;
-    color:#55d !important;
     font-style:normal;
+}
+a.ui {
+    color:#55d !important;
     text-decoration:underline;
 }
-.ui:hover {
+a.ui:hover {
     text-decoration:none;
 }
 .ui.delete {

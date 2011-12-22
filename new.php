@@ -55,12 +55,10 @@ try {
     		<input type="text" name="url" tabindex="2" value="<?=$params['url']?>">
             </p>
 
-    		<label>tags <a href="#" class="ui tag-help" onClick="$('#tag-help').toggle();return false;">how to tag &raquo;</a></label>
-            <ul id="tag-help" style="display:none">
-                <li><span class="bull">&bull;</span>combine "multiple words" with quotes</li>
-                <li><span class="bull">&bull;</span>separate tags by space, comma, enter</li>
-            </ul>
+            <p>
+    		<label>tags <span class="ui">(combine "multiple words" with quotes)</span></label>
     		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
+            </p>
 
             <p>
             <label>description</label>

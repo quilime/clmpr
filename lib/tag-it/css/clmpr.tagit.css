@@ -1,3 +1,17 @@
+/* ui overrride */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    color: #00d;
+    font-weight: normal;
+}
+ul.tagit li.tagit-choice .tagit-close .text-icon {
+
+}
+ul.tagit li.tagit-choice .tagit-close .text-icon:hover {
+    color: #00f !important;
+}
+
+
+
 ul.tagit {
     border: 1px solid #ccc;
 }
@@ -7,8 +21,8 @@ ul.tagit li {
 }
 ul.tagit li.tagit-choice {
     border-radius: 2px;
-    border: 1px solid #CAD8F3;
-    background-color: #DEE7F8;
+    border: 1px solid #bbb;
+    background-color: #e0e0e0;
 }
 ul.tagit li.tagit-choice a.tagit-close {
     text-decoration: none;
@@ -30,9 +44,10 @@ ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
     background-color: #bbcef1;
     border-color: #6d95e0;
 }
+
+
 ul.tagit li.tagit-choice a.tagLabel:hover,
 ul.tagit li.tagit-choice a.tagit-close .text-icon:hover {
-    color: #222;
 }
 ul.tagit input[type="text"] {
     color: #333333;
