@@ -140,10 +140,9 @@ function deleteClump( id, elem ) {
             <?php if ($hasDescription) : ?>
                 <span class="desc">
                 <?php echo htmlentities($row['description']); ?>
-                </span>
+                </span><br />
             <?php endif; ?>
             <?php if (count($row['tags']) > 0) : ?>
-            <br />
             <ul class="tags">
                 <?php foreach($row['tags'] as $tag) : ?>
                 <li><a href="/tag/<?=$tag?>"><?=$tag?></a></li>
