@@ -21,7 +21,6 @@ function get_user()
 function get_users(&$dbh, $args)
 {
     $user = isset($args['user']) ? $args['user'] : false;
-
     try {
         if ($user) {
             $sql = "SELECT * FROM users WHERE user = ?";
@@ -35,7 +34,6 @@ function get_users(&$dbh, $args)
     catch (PDOException $e) {
         echo $e->getMessage();
     }
-
     return false;
 }
 
@@ -45,5 +43,9 @@ function tag_string_to_array($tagstr) {
     # else split on spaces
         // TODO
         # check for quotes (for "multiple words")
-    return strpos($tagstr, ',') ? explode(',', $tagstr) : explode(' ', $tagstr);
+    $tags = array_filter(strpos($tagstr, ',') ? explode(',', $tagstr) : explode(' ', $tagstr));
+    array_walk($tags, function(&$item, $key) {
+             $item = trim($item);
+         });
+    return $tags;
 }

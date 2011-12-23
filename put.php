@@ -36,7 +36,7 @@ try {
                             VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
         $insert = $q->execute( array(
                     $user['id'], $params['title'], $params['url'],
-                    implode(',', $params['tags']), $params['description']));
+                    $params['tags'], $params['description']));
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';

@@ -29,9 +29,9 @@ try {
             $q->execute( array( $params['id'] ));
         }
         $clump = $q->fetch();
-        $clump['tags'] = explode(",", $clump['tags']);
+        $clump['tags'] = tag_string_to_array($clump['tags']);
 
-        # process tags
+        # compare new tags to existing tags
         $tags = tag_string_to_array( $params['tags'] );
         $tags_to_keep   = array_intersect ($tags, $clump['tags']);
         $tags_to_delete = array_diff ($clump['tags'], $tags_to_keep);
@@ -66,7 +66,7 @@ try {
                 SET `url` = ?, `tags` = ?, `title` = ?, `description` = ?
                 WHERE `id` = ?";
         $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $params['url'], implode(",", $tags), $params['title'], $params['description'], $params['id']));
+        $insert = $q->execute( array( $params['url'], $params['tags'], $params['title'], $params['description'], $params['id']));
 
         header('Location: /get.php?id=' . $params['id']);
         //echo "clumped.<br/><br/>";
