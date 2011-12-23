@@ -121,10 +121,7 @@ function deleteClump( id, elem ) {
     $hasDescription = $row['description'] || false;
 
     # process tags
-    if ($row['tags'] == '')
-        $row['tags'] = array();
-    else
-        $row['tags'] = tag_string_to_array( $row['tags'] );
+    $row['tags'] = tag_string_to_array( $row['tags'] );
 
 ?>
 

@@ -41,11 +41,23 @@ function get_users(&$dbh, $args)
 function tag_string_to_array($tagstr) {
     # if has commas, split on commas
     # else split on spaces
-        // TODO
-        # check for quotes (for "multiple words")
-    $tags = array_filter(strpos($tagstr, ',') ? explode(',', $tagstr) : explode(' ', $tagstr));
+    $tags = array();
+    if (strpos($tagstr, ',')) {
+        $tags = explode(',', $tagstr);
+    } else {
+        # match all quoted strings
+        preg_match_all('/"(.*?)"/', $tagstr, $quoted_tags);
+        # strip quoted strings from tag string
+        $tagstr_noquotes = str_replace($quoted_tags[0], '', $tagstr);
+        # split new string on spaces
+        $tags_woutquotes = explode(' ', $tagstr_noquotes);
+        # merge arrays
+        $tags = array_merge($tags_woutquotes, $quoted_tags[1]);
+    }
+    # trim all values
     array_walk($tags, function(&$item, $key) {
              $item = trim($item);
-         });
-    return $tags;
+    });
+
+    return array_filter($tags);
 }
