@@ -12,30 +12,6 @@ try {
     ?>
     <!DOCTYPE html><head>
 	<?php include 'head.html'; ?>
-
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery.tagit.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/clmpr.tagit.css" />
-
-    <script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-
-    <script>
-    $(document).ready(function() {
-
-        // user tags array
-        var userTags = [];
-
-        $("#tag-input").tagit({
-            availableTags : userTags,
-            animate : false,
-            tabIndex : 3
-        });
-        $('.tagit input')[0].focus();
-
-    });
-    </script>
-
     </head><body>
     <?php
 
@@ -80,12 +56,8 @@ try {
     	<?php
 
     } else {
-
         include 'signin.php';
-
     }
-
-
 }
 catch(PDOException $e)
 {

@@ -38,3 +38,12 @@ function get_users(&$dbh, $args)
 
     return false;
 }
+
+
+function tag_string_to_array($tagstr) {
+    # if has commas, split on commas
+    # else split on spaces
+        // TODO
+        # check for quotes (for "multiple words")
+    return strpos($tagstr, ',') ? explode(',', $tagstr) : explode(' ', $tagstr);
+}

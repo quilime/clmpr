@@ -5,8 +5,8 @@ include 'init.php';
 $params = array();
 $params['id']    = isset($_POST['id']) ? $_POST['id'] : null;
 $params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
-$params['url']   = isset($_POST['url'])   ? $_POST['url']  : null;
-$params['tags']  = isset($_POST['tags'])  ? $_POST['tags']  : null;
+$params['url']   = isset($_POST['url']) ? $_POST['url']  : null;
+$params['tags']  = isset($_POST['tags']) ? $_POST['tags']  : null;
 $params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
 
 //print_r($_POST);
@@ -32,10 +32,10 @@ try {
         $clump['tags'] = explode(",", $clump['tags']);
 
         # process tags
-        $tags = explode(',', $params['tags']);
-        $tags_to_keep   = array_intersect ($tags,          $clump['tags']);
-        $tags_to_delete = array_diff      ($clump['tags'], $tags_to_keep);
-        $tags_to_add    = array_diff      ($tags,          $tags_to_keep);
+        $tags = tag_string_to_array( $params['tags'] );
+        $tags_to_keep   = array_intersect ($tags, $clump['tags']);
+        $tags_to_delete = array_diff ($clump['tags'], $tags_to_keep);
+        $tags_to_add    = array_diff ($tags, $tags_to_keep);
 
         # add/increment new tags
         if (count($tags_to_add) > 0) {

@@ -32,27 +32,8 @@ catch(PDOException $e)
 ?><!DOCTYPE html><head>
 
 <?php include 'head.html'; ?>
-
 <title>clmpr - <?=$clump['title']?></title>
-
-<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery.tagit.css" />
-<link rel="stylesheet" type="text/css" href="/lib/tag-it/css/clmpr.tagit.css" />
-
-<script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-
 <script type="text/javascript">
-$(document).ready(function() {
-    // user tags array
-    var userTags = [];
-    $("#tag-input").tagit({
-        availableTags : userTags,
-        animate : false,
-        spaceChar : '-',
-        tabIndex : 3
-    });
-});
 function deleteClump( id ) {
     if (confirm("confirm delete")) {
         $.post('delete.php', { clump_id : id }, function(result) {
@@ -62,7 +43,6 @@ function deleteClump( id ) {
     }
 }
 </script>
-
 </head><body>
 
 <?php include 'header.html'; ?>
@@ -82,13 +62,13 @@ function deleteClump( id ) {
     </p>
 
     <p>
-    <label>tags <span class="ui">(combine "multiple words" with quotes)</span></label>
-    <input type="text" tabindex="3" id="tag-input" name="tags" value="<?php echo $clump['tags']; ?>">
+    <label>tags</label>
+    <input type="text" tabindex="3" name="tags" value="<?php echo $clump['tags']; ?>">
     <p>
 
     <p>
     <label>description</label>
-    <input type="text" tabindex="4" name="description" value="<?php echo htmlentities($clump['description']); ?>">
+    <input type="text" tabindex="4" name="description" value="<?php echo $clump['description']; ?>">
     </p>
 
     <p>

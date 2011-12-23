@@ -18,7 +18,7 @@ try {
         $dbh->beginTransaction();
 
         # process tags
-        $tags = explode(',', $params['tags']);
+        $tags = tag_string_to_array( $params['tags'] );
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
                 $q = $dbh->prepare("INSERT INTO `tags` (`tag`, `count`)
@@ -36,7 +36,7 @@ try {
                             VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
         $insert = $q->execute( array(
                     $user['id'], $params['title'], $params['url'],
-                    $params['tags'], $params['description']));
+                    implode(',', $params['tags']), $params['description']));
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';

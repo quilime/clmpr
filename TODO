@@ -1,3 +1,4 @@
+// TODO
 evaluate MVC architecture w/ template system
 templates for rss, xml
 clean urls
@@ -6,14 +7,17 @@ private saving
 import/export
 pagination
 tag autocomplete from user tags
+check for quotes (for "multiple words")
 
-allow commas or space delimited
+
 
 pages
 	help - explain bookmarklet
 	about
 
+
 ref
+	pinterest.in
 	http://www.pui.ch/phred/archives/2005/05/tags-with-mysql-fulltext.html
 	http://code.google.com/p/mysqlicious/
 
