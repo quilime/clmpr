@@ -11,16 +11,16 @@ $dbh->beginTransaction();
 try {
 	/*
     if ($params['tag']) {
-        $q = $dbh->prepare("SELECT *, tags.id as tag_id 
-                            FROM tags 
-                            WHERE tag = ? 
+        $q = $dbh->prepare("SELECT *, tags.id as tag_id
+                            FROM tags
+                            WHERE tag = ?
                             ORDER BY tag DESC");
         $q->execute( array( $params['tag'] ));
     }
     else {
     	*/
-        $q = $dbh->prepare("SELECT * FROM `tags` 
-                            WHERE `count` > 0 
+        $q = $dbh->prepare("SELECT * FROM `tags`
+                            WHERE `count` > 0
                             ORDER BY `count` DESC, `tag` ASC ");
         $q->execute();
 

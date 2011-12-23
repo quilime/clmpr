@@ -5,10 +5,13 @@ body {
      line-height: 1.3em;
 }
 a {
-    text-decoration:none;
 }
 a:hover {
-    color: #000099 !important;
+    color: #00e !important;
+    text-decoration:none;
+}
+a.mute {
+    color:#444;
 }
 ul {
     padding: 0pt;
@@ -49,15 +52,17 @@ hr {
 }
 
 
+ul.links {
+    padding:0 0 3px 0;
+}
 ul.links li {
-    margin-top:1.5em;
-    margin-bottom:1.5em;
+    margin-top:2em;
+    margin-bottom:2em;
 }
 ul.links li span.url a {
     display:inline-block;
 }
 ul.links li span.url a {
-    text-decoration:underline;
     color:#000;
 }
 ul.links li span.url a:hover {
@@ -73,7 +78,14 @@ ul.links li .desc {
     display:inline-block;
 }
 ul.links li .tags {
-    display:block;
+}
+ul.links li .tags:hover,
+ul.links li .tags:hover a {
+    color:#777;
+}
+ul.links li .tags:hover a:hover {
+    color:#00e !important;
+    text-decoration:underline;
 }
 
 .meta {
@@ -92,13 +104,14 @@ ul.links li .tags {
     font-style:normal;
 }
 a.ui {
-    color:#55d !important;
+    color:#333 !important;
     text-decoration:underline;
 }
 a.ui:hover {
+    color:#00d !important;
     text-decoration:none;
 }
-.ui.delete {
+.ui.delete
 }
 .ui.edit {
 }
@@ -107,7 +120,13 @@ a.ui:hover {
 form.new input[type="text"] {
     width:100%;
 }
-
+form.new textarea {
+    width:100%;
+    height:4em;
+    font-family:Lucida Grande, inherited;
+    font-size:11px;
+    padding:3px;
+}
 
 
 ul.tags, ul.tags li {
@@ -116,13 +135,14 @@ ul.tags, ul.tags li {
     font-size:12px;
 }
 ul.tags li {
-    margin:0 1px 0 0;
+    margin:0 0.2em 0 0;
 }
 ul.tags li a {
     color:#aaa;
     text-decoration:none;
 }
 ul.tags li a:hover {
+    text-decoration:underline;
 }
 ul.tags li:after {
     content:", "
@@ -130,6 +150,8 @@ ul.tags li:after {
 ul.tags li:last-child:after {
     content:"";
 }
+
+
 
 
 
@@ -146,3 +168,4 @@ ul.tags li:last-child:after {
 #tags li {
     font-size:14px;
 }
+

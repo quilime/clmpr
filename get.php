@@ -20,6 +20,7 @@ try {
     if ($params['user']) {
         $user = get_users($dbh, array('user' => $params['user'] ));
         if ($user) {
+
             $q = $dbh->prepare("SELECT *, clumps.id as clump_id
                                 FROM clumps
                                 JOIN users
@@ -83,9 +84,10 @@ switch ($format) {
 
 <?php include 'header.html'; ?>
 
+
 <?php if ($tag) : ?>
 <p>
-<strong><a href="/tags/">tag</a>:</strong> <i><?php echo $tag ?></i>
+<a href="/tags/">tags</a>: <i><?php echo $tag ?></i>
 </p>
 <?php else: ?>
 <p>
@@ -141,6 +143,7 @@ function deleteClump( id, elem ) {
                 </span>
             <?php endif; ?>
             <?php if (count($row['tags']) > 0) : ?>
+            <br />
             <ul class="tags">
                 <?php foreach($row['tags'] as $tag) : ?>
                 <li><a href="/tag/<?=$tag?>"><?=$tag?></a></li>
