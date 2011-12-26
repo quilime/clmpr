@@ -135,7 +135,8 @@ ul.tags, ul.tags li {
     font-size:12px;
 }
 ul.tags li {
-    margin:0 0.2em 0 0;
+    margin:0 0.4em 0 0;
+    letter-spacing:-.01em;
 }
 ul.tags li a {
     color:#aaa;
@@ -150,6 +151,7 @@ ul.tags li:after {
 ul.tags li:last-child:after {
     content:"";
 }
+
 
 
 
