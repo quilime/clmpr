@@ -12,6 +12,11 @@ try {
     ?>
     <!DOCTYPE html><head>
 	<?php include 'head.html'; ?>
+    <script>
+    $(document).ready(function() {
+        $('#tag-input')[0].focus();
+    });
+    </script>
     </head><body>
     <?php
 
@@ -32,13 +37,13 @@ try {
             </p>
 
             <p>
-    		<label>tags <span class="ui">(combine "multiple words" with quotes)</span></label>
-    		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
+            <label>description</label>
+            <textarea name="description" tabindex="3"></textarea>
             </p>
 
             <p>
-            <label>description</label>
-            <input type="text" name="description" tabindex="4" value="">
+    		<label>tags</label>
+    		<input type="text" id="tag-input" name="tags" tabindex="4" value="">
             </p>
 
     		<br />

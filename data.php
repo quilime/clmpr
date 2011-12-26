@@ -45,7 +45,7 @@ function tag_string_to_array($tagstr) {
     if (strpos($tagstr, ',')) {
         $tags = explode(',', $tagstr);
     } else {
-        # match all quoted strings
+        # match anything inside a pair of quotes
         preg_match_all('/"(.*?)"/', $tagstr, $quoted_tags);
         # strip quoted strings from tag string
         $tagstr_noquotes = str_replace($quoted_tags[0], '', $tagstr);
