@@ -12,30 +12,11 @@ try {
     ?>
     <!DOCTYPE html><head>
 	<?php include 'head.html'; ?>
-
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/jquery.tagit.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/tag-it/css/clmpr.tagit.css" />
-
-    <script src="/lib/tag-it/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/lib/tag-it/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
-
     <script>
     $(document).ready(function() {
-
-        // user tags array
-        var userTags = [];
-
-        $("#tag-input").tagit({
-            availableTags : userTags,
-            animate : false,
-            tabIndex : 3
-        });
-        $('.tagit input')[0].focus();
-
+        $('#tag-input')[0].focus();
     });
     </script>
-
     </head><body>
     <?php
 
@@ -56,13 +37,13 @@ try {
             </p>
 
             <p>
-    		<label>tags <span class="ui">(combine "multiple words" with quotes)</span></label>
-    		<input type="text" id="tag-input" name="tags" tabindex="3" value="">
+            <label>description</label>
+            <textarea name="description" tabindex="3"></textarea>
             </p>
 
             <p>
-            <label>description</label>
-            <input type="text" name="description" tabindex="4" value="">
+    		<label>tags</label>
+    		<input type="text" id="tag-input" name="tags" tabindex="4" value="">
             </p>
 
     		<br />
@@ -80,12 +61,8 @@ try {
     	<?php
 
     } else {
-
         include 'signin.php';
-
     }
-
-
 }
 catch(PDOException $e)
 {

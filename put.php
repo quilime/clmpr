@@ -18,7 +18,7 @@ try {
         $dbh->beginTransaction();
 
         # process tags
-        $tags = explode(',', $params['tags']);
+        $tags = tag_string_to_array( $params['tags'] );
         if (count($tags) > 0) {
             foreach($tags as $key => $tag) {
                 $q = $dbh->prepare("INSERT INTO `tags` (`tag`, `count`)

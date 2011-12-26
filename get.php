@@ -121,10 +121,7 @@ function deleteClump( id, elem ) {
     $hasDescription = $row['description'] || false;
 
     # process tags
-    if ($row['tags'] == '')
-        $row['tags'] = array();
-    else
-        $row['tags'] = explode(",", $row['tags']);
+    $row['tags'] = tag_string_to_array( $row['tags'] );
 
 ?>
 
@@ -154,7 +151,7 @@ function deleteClump( id, elem ) {
         <span class="meta">
 
             <span title="<?php echo date('r', strtotime($row['date'])); ?>">
-                <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a> by
+                <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a>
                 <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
             </span>
 
