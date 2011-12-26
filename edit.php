@@ -63,12 +63,12 @@ function deleteClump( id ) {
 
     <p>
     <label>description</label>
-    <textarea type="text" tabindex="4" name="description"><?php echo htmlentities($clump['description']); ?></textarea>
+    <textarea type="text" tabindex="3" name="description"><?php echo htmlentities($clump['description']); ?></textarea>
     </p>
 
     <p>
     <label>tags</label>
-    <input type="text" tabindex="3" name="tags" value="<?php echo htmlentities($clump['tags']); ?>">
+    <input type="text" tabindex="4" name="tags" value="<?php echo htmlentities($clump['tags']); ?>">
     <p>
 
     <p>
