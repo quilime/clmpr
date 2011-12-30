@@ -16,11 +16,11 @@ $dbh->beginTransaction();
 $q = null;
 $tag = null;
 
+
 try {
     if ($params['user']) {
         $user = get_users($dbh, array('user' => $params['user'] ));
         if ($user) {
-
             $q = $dbh->prepare("SELECT *, clumps.id as clump_id
                                 FROM clumps
                                 JOIN users
@@ -117,6 +117,14 @@ function deleteClump( id, elem ) {
 <ul class="links">
 <?php if ($q) : for($i = 0; $row = $q->fetch(); $i++ ):
 
+    # skip private bookmarks of other users
+    if ($user['user'] != $row['user'] && $row['private']) {
+        continue;
+    }
+
+    # is private
+    $private = $user['user'] == $row['user'] && $row['private'];
+
     # process description
     $hasDescription = $row['description'] || false;
 
@@ -127,7 +135,7 @@ function deleteClump( id, elem ) {
 
     <li>
 
-        <span class="url">
+        <span class="url <?php echo $private ? 'private' : '';?>">
             <a href="<?php echo $row['url'] ?>">
                 <?php echo $row['title'] ? $row['title'] : "&lt;title&gt;" ?>
             </a>

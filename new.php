@@ -48,6 +48,10 @@ try {
 
     		<br />
 
+            <input type="checkbox" name="private" tabindex="5"> private
+
+            <br />
+
             <p>
     		<input type="submit" tabindex="5" value="save">
     		<a href="javascript:window.close();">cancel</a>

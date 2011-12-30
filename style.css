@@ -6,9 +6,10 @@ body {
 }
 a {
 }
-a:hover {
+a:hover, .private a:hover {
     color: #00e !important;
     text-decoration:none;
+    border-color:#00e;
 }
 a.mute {
     color:#444;
@@ -60,7 +61,9 @@ ul.links li {
     margin-bottom:2em;
 }
 ul.links li span.url a {
+    font-weight:bold;
     display:inline-block;
+    margin-bottom:4px;
 }
 ul.links li span.url a {
     color:#000;
@@ -86,6 +89,10 @@ ul.links li .tags:hover a {
 ul.links li .tags:hover a:hover {
     color:#00e !important;
     text-decoration:underline;
+}
+.private a {
+    background:#eee !important;
+    color:#aaa !important;
 }
 
 .meta {

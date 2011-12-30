@@ -7,6 +7,10 @@ $params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
 $params['url'] = isset($_POST['url']) ? $_POST['url'] : null;
 $params['tags'] = isset($_POST['tags']) ? $_POST['tags'] : null;
 $params['description'] = isset($_POST['description']) ? $_POST['description'] : null;
+$params['private'] = isset($_POST['private']) ? true : false;
+
+//print_r($_POST);
+//exit;
 
 include 'head.html';
 
@@ -32,11 +36,11 @@ try {
         # insert clump
         $q = $dbh->prepare("INSERT INTO `clumps`
                           ( `user_id`, `title`, `url`,
-                            `tags`, `description`, `date` )
-                            VALUES ( ?, ?, ?, ?, ?, NOW() ) ");
+                            `tags`, `description`, `date`, `private` )
+                            VALUES ( ?, ?, ?, ?, ?, NOW(), ? ) ");
         $insert = $q->execute( array(
                     $user['id'], $params['title'], $params['url'],
-                    $params['tags'], $params['description']));
+                    $params['tags'], $params['description'], $params['private']));
 
         echo "clumped.<br/><br/>";
         echo '<a href="javascript:window.close();">ok</a>';
