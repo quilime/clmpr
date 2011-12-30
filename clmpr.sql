@@ -10,8 +10,10 @@ CREATE TABLE `clumps` (
   `description` text NOT NULL,
   `tags` text NOT NULL,
   `date` datetime NOT NULL,
+  `private` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `date` (`date`),
+  KEY `private` (`private`),
   FULLTEXT KEY `tags` (`tags`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
