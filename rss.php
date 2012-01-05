@@ -7,12 +7,20 @@
 	<description></description>
 	<title>Citation, Logging and Multi-Purpose aRchive</title>
 
-	<?php for($i = 0; $row = $q->fetch(); $i++ ): ?>
+	<?php for($i = 0; $row = $q->fetch(); $i++ ): 
+	if ($row['private']) continue;
+	$tags = tag_string_to_array($row['tags']);
+
+	
+	?>
 	<item>
 	    <title><?php echo htmlspecialchars($row['title']); ?></title>
 	    <link><?php echo htmlspecialchars($row['url']) ?></link>
 	    <description><![CDATA[<?php echo htmlspecialchars($row['description']); ?>]]></description>
 	    <tags><?php echo $row['tags'] ?></tags>
+	    <? foreach($tags as $tag) : ?>
+	    <category><?=$tag?></category>
+	    <? endforeach; ?>
 	    <pubDate><?php echo date('r', strtotime($row['date'])); ?></pubDate>
 	</item>	
 
