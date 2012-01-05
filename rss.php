@@ -16,7 +16,7 @@
 	<item>
 	    <title><?php echo htmlspecialchars($row['title']); ?></title>
 	    <link><?php echo htmlspecialchars($row['url']) ?></link>
-	    <description><![CDATA[<?php echo htmlspecialchars($row['description']); ?>]]></description>
+	    <description><?php echo htmlspecialchars($row['description']); ?></description>
 	    <tags><?php echo $row['tags'] ?></tags>
 	    <? foreach($tags as $tag) : ?>
 	    <category><?=$tag?></category>
