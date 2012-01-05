@@ -1,7 +1,6 @@
 body {
      color: #444444;
-     font-family: Georgia, sans-serif;
-     font-size: 14px;
+     font-family: sans-serif;
      line-height: 1.3em;
 }
 a {
@@ -63,6 +62,7 @@ ul.links li {
 ul.links li span.url a {
     display:inline-block;
     margin-bottom:4px;
+    font-weight:bold;
 }
 ul.links li span.url a {
     color:#000;
@@ -83,7 +83,6 @@ ul.links li .tags {
 }
 ul.links li .tags:hover,
 ul.links li .tags:hover a {
-    color:#777;
 }
 ul.links li .tags:hover a:hover {
     color:#00e !important;
@@ -95,12 +94,12 @@ ul.links li .tags:hover a:hover {
 }
 
 .meta {
-    color:#bbb;
+    color:#666;
     font-style:italic;
     font-size:12px;
 }
 .meta a {
-    color:#999;
+    color:#666;
 }
 
 
@@ -141,11 +140,11 @@ ul.tags, ul.tags li {
     font-size:12px;
 }
 ul.tags li {
-    margin:0 0.4em 0 0;
+    margin:0;
     letter-spacing:-.01em;
 }
 ul.tags li a {
-    color:#aaa;
+    color:#000;
     text-decoration:none;
 }
 ul.tags li a:hover {
