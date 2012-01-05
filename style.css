@@ -1,7 +1,9 @@
 body {
      color: #444444;
      font-family: sans-serif;
-     line-height: 1.3em;
+     line-height: 1.2em;
+    font-size:14px;
+    margin:20px;
 }
 a {
 }
@@ -53,11 +55,12 @@ hr {
 
 
 ul.links {
+    max-width:720px;
     padding:0 0 3px 0;
 }
 ul.links li {
-    margin-top:2em;
-    margin-bottom:2em;
+    margin-top:2.5em;
+    margin-bottom:2.5em;
 }
 ul.links li span.url a {
     display:inline-block;
@@ -140,21 +143,17 @@ ul.tags, ul.tags li {
     font-size:12px;
 }
 ul.tags li {
-    margin:0;
-    letter-spacing:-.01em;
+    margin:0 0.08em;
 }
 ul.tags li a {
     color:#000;
+    background:#ddd;
+    border-radius:3px;
+    padding:0.1em 0.3em;
     text-decoration:none;
 }
 ul.tags li a:hover {
     text-decoration:underline;
-}
-ul.tags li:after {
-    content:", "
-}
-ul.tags li:last-child:after {
-    content:"";
 }
 
 
