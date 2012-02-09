@@ -138,7 +138,6 @@ form.new textarea {
 
 
 ul.tags, ul.tags li {
-    font-style:italic;
     display:inline-block;
 }
 ul.tags li {
@@ -147,8 +146,8 @@ ul.tags li {
     margin:0 0.08em;
 }
 ul.tags li a {
-    color:#000;
-    background:#ddd;
+    color:#500;
+    background:#dda;
     border-radius:3px;
     padding:0.1em 0.3em;
     text-decoration:none;
