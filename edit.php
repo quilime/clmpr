@@ -81,6 +81,11 @@ function deleteClump( id ) {
     <br />
 
     <?php if ($canEdit) : ?>
+
+            <input type="checkbox" name="private" <? if($clump['private']==1): echo' checked '; endif;?>tabindex="5"> private
+
+            <br />            <br />
+
         <p>
         <input type="hidden" value="<?php echo $clump['clump_id']; ?>" name="id" />
         <input type="submit" tabindex="5" value="save">

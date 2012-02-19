@@ -3,14 +3,14 @@
 include 'init.php';
 
 $params = array();
-$params['id']    = isset($_POST['id']) ? $_POST['id'] : null;
-$params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
-$params['url']   = isset($_POST['url']) ? $_POST['url']  : null;
-$params['tags']  = isset($_POST['tags']) ? $_POST['tags']  : null;
-$params['description']  = isset($_POST['description'])  ? $_POST['description']  : null;
 
-//print_r($_POST);
-//exit;
+$params['id'] = isset($_POST['id']) ? $_POST['id'] : null;
+$params['title'] = isset($_POST['title']) ? $_POST['title'] : null;
+$params['url'] = isset($_POST['url']) ? $_POST['url']  : null;
+$params['private'] = isset($_POST['private']) && $_POST['private'] == 'on' ? 1 : 0;
+$params['tags'] = isset($_POST['tags']) ? $_POST['tags']  : null;
+$params['description'] = isset($_POST['description'])  ? $_POST['description']  : null;
+
 
 try {
 
@@ -63,10 +63,10 @@ try {
 
         # update clump
         $sql = "UPDATE `clumps`
-                SET `url` = ?, `tags` = ?, `title` = ?, `description` = ?
+                SET `url` = ?, `tags` = ?, `title` = ?, `description` = ?, `private` = ? 
                 WHERE `id` = ?";
         $q = $dbh->prepare($sql);
-        $insert = $q->execute( array( $params['url'], $params['tags'], $params['title'], $params['description'], $params['id']));
+        $insert = $q->execute( array( $params['url'], $params['tags'], $params['title'], $params['description'], $params['private'], $params['id']));
 
         header('Location: /get.php?id=' . $params['id']);
         //echo "clumped.<br/><br/>";
