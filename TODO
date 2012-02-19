@@ -1,19 +1,29 @@
+
+
+
 // TODO
+
+import/export (start with importing delicious bookmarks)
+
 evaluate MVC architecture w/ template system
 templates for rss, xml
 clean urls
 preview media when embedding videos from youtube, images, etc
-private saving
-import/export
 pagination
-tag autocomplete from user tags
-check for quotes (for "multiple words")
+tag autocomplete
+edit in place
+user settings
 
 
+privacy
+	private bookmarks, and private tags (.tagname)
+	add as private by default (option in user settings)
+	enable/disable public profile (paid)
 
-pages
-	help - explain bookmarklet
-	about
+
+ideas
+	post by email
+	archive links (a la pinboard)
 
 
 ref
@@ -24,3 +34,8 @@ ref
 
 tag complete
 	http://jqueryui.com/demos/autocomplete/#multiple
+
+
+
+
+
