@@ -54,7 +54,7 @@ try {
                             FROM clumps
                             JOIN users
                                 ON users.id = clumps.user_id
-                            ORDER BY date DESC");
+                            ORDER BY date DESC LIMIT 50 ");
         $q->execute();
     }
 }

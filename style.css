@@ -64,8 +64,10 @@ ul.links li {
 }
 ul.links li span.url a {
     display:inline-block;
-    margin-bottom:4px;
-    font-weight:bold;
+    line-height:1.2em;
+    font-weight:normal;
+    font-size:22px;
+    text-decoration:none;
 }
 ul.links li span.url a {
     color:#000;
@@ -146,14 +148,14 @@ ul.tags li {
     margin:0 0.08em;
 }
 ul.tags li a {
-    color:#500;
-    background:#dda;
+    color:#fff;
+    background:#777;
     border-radius:3px;
-    padding:0.1em 0.3em;
+    padding:0.2em 0.3em;
     text-decoration:none;
 }
 ul.tags li a:hover {
-    text-decoration:underline;
+    background:#333;
 }
 
 
