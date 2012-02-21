@@ -98,8 +98,10 @@
         <input type="submit" value="sign in" />
     </form>
 
+    <? if (ALLOW_SIGNUP) : ?>
     or <a id="register_link" href="#" onClick="$('#register').toggle();">sign up</a>
-
+    <? endif; ?>
+    
     <span id="register" style="display:none;">
         <form>
             <input id="nuser" type="text" value="user" onFocus="this.select();">
