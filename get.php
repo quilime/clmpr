@@ -144,7 +144,7 @@ function deleteClump( id, elem ) {
         <div class="expand">
             <?php if ($hasDescription) : ?>
                 <span class="desc">
-                <?php echo htmlentities($row['description']); ?>
+                <?php echo nl2br(htmlentities($row['description'])); ?>
                 </span><br />
             <?php endif; ?>
             <?php if (count($row['tags']) > 0) : ?>
