@@ -1,14 +1,16 @@
 body {
-     color: #444444;
+     background:#191919;
+     color: #aaa;
      font-family: sans-serif;
      line-height: 1.2em;
-    font-size:14px;
+    font-size:16px;
     margin:20px;
 }
 a {
+  color:#ff0;
 }
 a:hover, .private a:hover {
-    color: #00e !important;
+    color: #ee0 !important;
     text-decoration:none;
     border-color:#00e;
 }
@@ -26,7 +28,7 @@ label {
 }
 hr {
     border:0;
-    border-bottom:1px dotted #888;
+    border-bottom:1px dotted #333;
 }
 
 .bull {
@@ -36,10 +38,10 @@ hr {
 
 
 .header, .header a {
-     color: #888888;
+     color: #fff;
 }
 .header b {
-     color: #000000;
+     color: #fff;
 }
 
 
@@ -70,13 +72,13 @@ ul.links li span.url a {
     text-decoration:none;
 }
 ul.links li span.url a {
-    color:#000;
+    color:#fff;
 }
 ul.links li span.url a:hover {
     text-decoration:none;
 }
 ul.links li .desc {
-    color:#00d;
+    color:#4d0;
 }
 ul.links li .expand {
     color:#aaa;
@@ -94,8 +96,8 @@ ul.links li .tags:hover a:hover {
     color:#fff !important;
 }
 .private a {
-    background:#eee !important;
-    color:#aaa !important;
+    background:#222 !important;
+    color:#666 !important;
 }
 
 .meta {
@@ -118,7 +120,6 @@ a.ui {
     text-decoration:underline;
 }
 a.ui:hover {
-    color:#00d !important;
     text-decoration:none;
 }
 .ui.delete
@@ -149,7 +150,7 @@ ul.tags li {
 }
 ul.tags li a {
     color:#fff;
-    background:#999;
+    background:#444;
     border-radius:3px;
     padding:0.2em 0.3em;
     text-decoration:none;
