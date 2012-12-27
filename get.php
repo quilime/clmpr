@@ -158,10 +158,13 @@ function deleteClump( id, elem ) {
 
         <span class="meta">
 
+            <a href="/get.php?id=<?php echo $row['clump_id'] ?>">#</a>
+
             <span title="<?php echo date('r', strtotime($row['date'])); ?>">
                 <?php echo approximate_time(date('U') - strtotime($row['date'])) ?> ago</a>
                 <a class="uname" href="/<?php echo $row['user'] ?>"><?php echo $row['user'] ?></a>
             </span>
+
 
         <?php if ($user['user'] == $row['user']): ?>
             <a href="/edit.php?id=<?php echo $row['clump_id'];?>" class="ui edit">edit</a>
