@@ -178,3 +178,75 @@ ul.tags li a:hover {
     display:block;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+----------------------------------------------------
+*/
+input,
+textarea,
+select {
+    border: 1px solid #111;
+    padding: 0.5em;
+    font-size: 15px;
+    line-height: 1.2em;
+    background: #333;
+    color: #fff;
+    font-family: helvetica, sans-serif;
+}
+input:focus,
+textarea:focus,
+select:focus {  }
+textarea {
+    height: 55px;
+    background:#333;
+}
+fieldset{
+border:0;
+}
+input[type=text] { 
+background:#333;
+}
+input[type=submit] {
+    width: auto;
+    padding: 0.25em 1em;
+    line-height: 1.5em;
+    background:#43a;
+    text-shadow: 0 0 2px #300;
+    font-weight: bold;
+}
+input[type=reset] {
+    width: auto;
+    padding: 0.25em 1em;
+    line-height: 1.5em;
+    background:#333;
+    border: 2px solid #444;
+    text-shadow: 0 0 2px #300;
+    font-weight: bold;
+    color: #999;}
+input[type=checkbox],
+input[type=radio] {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1em;
+    margin: 0 0.25em 0 0;
+    padding: 0;
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: text-top;
+}
+input[type=radio] {
+}
+input[type=checkbox]:checked {
+}
+input[type=radio]:checked {
+}
